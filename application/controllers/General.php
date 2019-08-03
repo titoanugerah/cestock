@@ -11,6 +11,11 @@ class General extends CI_Controller
 
   public function login()
   {
+    if ($this->input->post('loginValidation'))
+    {
+      $login = $this->general_model->loginValidation();
+    if ($login['status']==1) {$this->session->set_userdata($login);redirect(base_url('dashboard'));}
+    }
     $this->load->view('login', $this->general_model->cLogin());
   }
 }

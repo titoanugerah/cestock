@@ -32,10 +32,11 @@
   <div class="limiter">
     <div class="container-login100" style="background-image: url('<?php echo base_url('./assets/template/login/'); ?>images/bg-01.jpg');">
       <div class="wrap-login100 p-l-30 p-r-30 p-t-32 p-b-3">
-        <form class="login100-form validate-form flex-sb flex-w">
+        <form class="login100-form validate-form flex-sb flex-w" method="post">
           <span class="login100-form-title p-b-2">
             Silahkan Login
           </span>
+          <p style="align:center;"><?php echo $this->session->userdata['notify']; ?></p>
 
           <div class="p-t-31 p-b-2">
             <span class="txt1">
@@ -62,12 +63,9 @@
           </div>
 
           <div class="container-login100-form-btn m-t-17">
-            <button type="submit" class="login100-form-btn" name="login" value="login">Masuk</button>
+            <button type="submit" class="login100-form-btn" name="loginValidation" value="loginValidation">Masuk</button>
           </div>
-
-
           <div class="w-full text-center p-t-3">
-
             <a href="<?php echo base_url('createUser'); ?>#" class="txt2 bo1">
               Daftar Sekarang
             </a>
