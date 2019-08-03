@@ -151,6 +151,7 @@ class General_model extends CI_Model
     public function cDashboard()
     {
       $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+      $data['view_name'] = 'no';
       return $data;
     }
 
