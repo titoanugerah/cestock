@@ -9,6 +9,10 @@ $route['logout'] = 'general/logout';
 $route['createUser'] = 'general/createUser';
 $route['profile'] = 'general/profile';
 
+
+//ADMIN
+$route['webconf'] = 'admin/webconf';
+
 //SYSTEM AREA
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
