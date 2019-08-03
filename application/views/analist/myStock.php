@@ -10,8 +10,8 @@
         <form  method="post">
           <button type="button" class="btn btn-success btn-round" data-toggle="modal" data-target="#createStock">Tambah saham</button> &nbsp;
           <button type="button" class="btn btn-success btn-round" data-toggle="modal" data-target="#recoverStock">Kembalikan saham terhapus</button> &nbsp;
-        <button type="submit" class="btn btn-success btn-round" name="refreshStock" value="refreshStock">Perbaharui Saham</button>
-      </form>
+          <button type="submit" class="btn btn-success btn-round" name="refreshStock" value="refreshStock">Perbaharui Saham</button>
+        </form>
       </div>
     </div>
   </div>
@@ -46,11 +46,8 @@
                   <td><?php echo $item->stock_name; ?></td>
                   <td><?php echo $item->prediction_1; ?></td>
                   <td>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailStock<?php echo $item->id; ?>">Detail</button>
-<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#updateModel<?php echo $item->id; ?>">Update Model</button>
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteStock<?php echo $item->id; ?>">Hapus Saham</button>
-
-</td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#detailStock<?php echo $item->id; ?>">Detail</button>
+                  </td>
                 </tr>
                 <?php $i++;endforeach; ?>
               </tbody>
@@ -153,92 +150,77 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <form role="form" method="post">
-            <div class="modal-body">
-              <div class="row">
-
-                <div class="form-group col-6 col-md-9">
-                  <label>Nama Perusahaan</label>
-                  <input type="text" class="form-control" placeholder="Masukan nama Perusahaan" name="stock_name" value="<?php echo $item->stock_name; ?>" required>
-                  <input type="text" class="form-control" name="id" value="<?php echo $item->id; ?>" hidden>
-                </div>
-                <div class="form-group col-6 col-md-3">
-                  <label>Kode Saham</label>
-                  <input type="text" class="form-control" placeholder="Masukan kode Saham" name="stock_code" value="<?php echo $item->stock_code; ?>" required>
+            <div class="row">
+              <div class="col-5 col-md-3">
+                <div class="nav flex-column nav-pills nav-secondary" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false">Informasi</a>
+                  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Model</a>
+                  <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Hapus</a>
                 </div>
               </div>
+              <div class="col-7 col-md-8">
+                <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="form-group col-6 col-md-8">
+                          <label>Nama Perusahaan</label>
+                          <input type="text" class="form-control" placeholder="Masukan nama Perusahaan" name="stock_name" value="<?php echo $item->stock_name; ?>" required>
+                          <input type="text" class="form-control" name="id" value="<?php echo $item->id; ?>" hidden>
+                        </div>
+                        <div class="form-group col-6 col-md-4">
+                          <label>Kode Saham</label>
+                          <input type="text" class="form-control" placeholder="Masukan kode Saham" name="stock_code" value="<?php echo $item->stock_code; ?>" required>
+                        </div>
+                      </div>
 
-              <div class="form-group col-12 col-md-12">
-                <label>Kategori</label> &nbsp;&nbsp;&nbsp;&nbsp;
-                <select class="select2basic form-control" name="id_category" style="width:350px">
-                  <?php foreach ($category as $items): ?>
-                    <option value="<?php echo $items->id ?>" <?php if($items->id==$item->id_category){echo 'selected';} ?>><?php echo $items->category; ?></option>
-                  <?php endforeach; ?>
-                </select>
+                      <div class="form-group col-12 col-md-12">
+                        <label>Kategori</label> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <select class="select2basic form-control" name="id_category" style="width:200px">
+                          <?php foreach ($category as $items): ?>
+                            <option value="<?php echo $items->id ?>" <?php if($items->id==$item->id_category){echo 'selected';} ?>><?php echo $items->category; ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-success" name="updateStock" value="updateStock">Update Saham</button>
+                      <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+                    </div>
+
+                  </div>
+                  <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <input type="file" name="fileUpload" class="btn btn-primary">
+                      </div>
+                      <input type="text" name="stock_code" value="<?php echo $item->stock_code ?>" hidden>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-success" name="updateModel" value="updateModel">Update Saham</button>
+                      <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+                    </div>
+                  </p>
+                </div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                  <div class="modal-body">
+                    <p>Apakah anda yakin menghapus saham <?php echo $item->stock_name; ?>? untuk melanjutkan silahkan masukan password anda pada kolom dibawah ini</p>
+                    <div class="form-group col-6 col-md-12">
+                      <input type="text" name="id" value="<?php echo $item->id ?>" hidden>
+                      <input type="password" name="password" class="form-control" placeholder="masukan password anda">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" name="deleteStock" value="deleteStock">Hapus Saham</button>
+                    <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-success" name="updateStock" value="updateStock">Update Saham</button>
-              <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
-            </div>
-          </form>
-        </div>
+          </div>
+
+        </form>
       </div>
     </div>
-
-
-      <div class="modal fade" id="updateModel<?php echo $item->id;?>" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <center>
-                <h4>Update Model</h4>
-              </center>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <form role="form" method="post" enctype="multipart/form-data">
-              <div class="modal-body">
-                <div class="form-group">
-                <input type="file" name="fileUpload" class="btn btn-primary">
-              </div>
-              <input type="text" name="stock_code" value="<?php echo $item->stock_code ?>" hidden>
-
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-success" name="updateModel" value="updateModel">Update Saham</button>
-                <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-
-    <div class="modal fade" id="deleteStock<?php echo $item->id;?>" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <center>
-              <h4>Hapus Saham</h4>
-            </center>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <form role="form" method="post">
-            <div class="modal-body">
-              <p>Apakah anda yakin menghapus saham <?php echo $item->stock_name; ?>? untuk melanjutkan silahkan masukan password anda pada kolom dibawah ini</p>
-              <div class="form-group col-6 col-md-12">
-                <input type="text" name="id" value="<?php echo $item->id ?>" hidden>
-                <input type="password" name="password" class="form-control" placeholder="masukan password anda">
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-danger" name="deleteStock" value="deleteStock">Hapus Saham</button>
-              <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-  <?php endforeach; ?>
+  </div>
+<?php endforeach; ?>

@@ -1,15 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
- *
- */
 class Analist_model extends CI_Model
 {
 
   function __construct()
   {
-
+    $this->load->library('Excel');
   }
 
   //CORE
@@ -55,7 +52,20 @@ class Analist_model extends CI_Model
   }
 
   //FUNCTIONAL
-  public function downloadStock($stock)
+
+  public function getStock($stock)
+  {
+    $url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=".$stock."&interval=5min&apikey=QT2PLXB57HD123EU&datatype=csv";
+    $data['csv'] = explode("\n",file_get_contents($url));
+    for ($i=0; $i < (count($data['csv'])-1); $i++) {
+      $data['row'][$i] = explode(",",$data['csv'][$i]);
+      $data['count'] = $i;
+    }
+    return $data;
+  }
+
+
+  public function getStockData($stock)
   {
     $objPHPExcel = new PHPExcel();
     $x=1; $class = array('BUY', 'HOLD', 'SELL');
@@ -78,6 +88,7 @@ class Analist_model extends CI_Model
       $dtest[$x] = ($high.','.$low.','.$close.','.$volume.','.$PP.','.$R1.','.$R2.','.$R3.','.$S1.','.$S2.','.$S3.','.$class[rand(0,2)]);
       $x++;
     }
+    // $fp = fopen('assets/upload/balance_csv.csv', 'w');
     $fp = fopen('balance_csv.csv', 'w');
     foreach($dtest as $line){$val = explode(",",$line);fputcsv($fp, $val);}
     fclose($fp);//end
@@ -99,10 +110,10 @@ class Analist_model extends CI_Model
   public function createStock()
   {
     $data = array(
-      'stock_name' => $this->input->post('stock_name'),
-      'stock_code' => $this->input->post('stock_code'),
-      'id_category' => $this->input->post('id_category'),
-      'id_analist' => $this->session->userdata['id'],
+    'stock_name' => $this->input->post('stock_name'),
+    'stock_code' => $this->input->post('stock_code'),
+    'id_category' => $this->input->post('id_category'),
+    'id_analist' => $this->session->userdata['id'],
     );
     $this->db->insert('stock', $data);
     $this->updateData('stock', 'id', $this->db->insert_id(), 'model', $this->input->post('stock_code').$this->uploadFile($this->input->post('stock_code'), '*')['ext']);
@@ -112,9 +123,9 @@ class Analist_model extends CI_Model
   public function updateStock()
   {
     $data = array(
-      'stock_name' => $this->input->post('stock_name'),
-      'stock_code' => $this->input->post('stock_code'),
-      'id_category' => $this->input->post('id_category'),
+    'stock_name' => $this->input->post('stock_name'),
+    'stock_code' => $this->input->post('stock_code'),
+    'id_category' => $this->input->post('id_category'),
     );
     $this->db->where($where = array('id' => $this->input->post('id')));
     $this->db->update('stock', $data);
@@ -141,14 +152,15 @@ class Analist_model extends CI_Model
     notify('Berhasil', 'Proses pengembalian saham berhasil dilakukan', 'success', 'fas fa-check', 'myStock');
   }
 
-
-
   public function refreshStock()
   {
-    var_dump(prediction('MEDC.JK'));die;
-
+    foreach ($this->getSomeData('stock', 'id_analist', $this->session->userdata['id']) as $item) {
+      $this->getStockData($item->stock_code);
+      $this->updateData('stock','id', $item->id, 'prediction_1', prediction($item->stock_code));
+    }
   }
+
 }
 
 
- ?>
+?>

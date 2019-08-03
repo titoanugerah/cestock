@@ -4,10 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 function prediction($stock)
 {
   $ci = &get_instance();
-  $cmd = 'java -classpath "weka.jar" weka.core.converters.CSVLoader -N "last" '.base_url('./assets/upload/').'balance_csv.csv > stock.arff ';
+  $cmd = 'java -classpath "assets/weka.jar" weka.core.converters.CSVLoader -N "last" assets/balance_csv.csv > assets/stock.arff ';
   exec($cmd,$output);
-
-  $cmd = 'java -classpath "weka.jar" weka.classifiers.trees.J48 -t stock.arff -d '.$stock.'.model -p 12';
+  $cmd = 'java -classpath "assets/weka.jar" weka.classifiers.trees.J48 -t assets/stock.arff -d assets/upload/'.$stock.'.model -p 12';
   exec($cmd,$output);
   for ($i=5;$i<sizeof($output);$i++)
   {
@@ -15,8 +14,6 @@ function prediction($stock)
     $out[$i-5] = $data[$i-5][1];
   }
   return $out[0];
-  //var_dump($out[1]);die;
-
 }
 
 ?>
