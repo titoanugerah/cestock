@@ -15,6 +15,7 @@ class Analist extends CI_Controller
 
   public function myStock()
   {
+    if ($this->input->post('createStock')) {$this->analist_model->createStock();}
     $this->load->view('template', $this->analist_model->cMyStock());
   }
 }

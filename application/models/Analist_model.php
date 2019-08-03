@@ -13,6 +13,11 @@ class Analist_model extends CI_Model
   }
 
   //CORE
+  public function getAllData($table)
+  {
+    return $this->db->get($table)->result();
+  }
+
   public function getDataRow($table, $whereVar, $whereVal)
   {
     return $this->db->get_where($table, $where = array($whereVar => $whereVal))->row();
@@ -23,13 +28,53 @@ class Analist_model extends CI_Model
     return $this->db->get_where($table, $where = array($whereVar => $whereVal))->result();
   }
 
+  public function updateData($table, $whereVar, $whereVal, $setVar, $setVal)
+  {
+    $this->db->where($where = array($whereVar => $whereVal));
+    return $this->db->update($table, $data = array($setVar=> $setVal));
+  }
+
+  //FUNCTIONAL
+  public function uploadFile($filename,$allowedFile)
+  {
+    $config['upload_path'] = APPPATH.'../assets/upload/';
+    $config['overwrite'] = TRUE;
+    $config['file_name']     =  str_replace(' ','_',$filename);
+    $config['allowed_types'] = $allowedFile;
+    $this->load->library('upload', $config);
+    if (!$this->upload->do_upload('fileUpload')) {
+      $upload['status']=0;
+      $upload['message']= "Mohon maaf terjadi error saat proses upload : ".$this->upload->display_errors();
+    } else {
+      $upload['status']=1;
+      $upload['message'] = "File berhasil di upload";
+      $upload['ext'] = $this->upload->data('file_ext');
+    }
+    $this->session->set_flashdata('message', $upload['message']);
+    return $upload;
+  }
+
   //APPLICATION
   public function cMyStock()
   {
     $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+    $data['category'] = $this->getAllData('category');
     $data['myStock'] = $this->getSomeData('stock', 'id_analist', $this->session->userdata['id']);
     $data['view_name'] = 'myStock';
     return $data;
+  }
+
+  public function createStock()
+  {
+    $data = array(
+      'stock_name' => $this->input->post('stock_name'),
+      'stock_code' => $this->input->post('stock_code'),
+      'id_category' => $this->input->post('id_category'),
+      'id_analist' => $this->session->userdata['id'],
+    );
+    $this->db->insert('stock', $data);
+    $this->updateData('stock', 'id', $this->db->insert_id(), 'model', $this->input->post('stock_code').$this->uploadFile($this->input->post('stock_code'), '*')['ext']);
+    notify('Berhasil', 'Proses penambahan saham berhasil dilakukan', 'success', 'fas fa-check', 'myStock');
   }
 }
 
