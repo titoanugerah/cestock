@@ -7,7 +7,7 @@ class General extends CI_Controller
   {
     parent::__construct();
     $this->load->model('general_model');
-//    error_reporting(0);
+    error_reporting(0);
   }
 
   public function login()

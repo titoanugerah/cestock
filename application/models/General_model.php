@@ -97,7 +97,10 @@ class General_model extends CI_Model
     public function loginValidation()
     {
       if($data['status'] = $this->getNumRow2('account', 'username', $this->input->post('username'), 'password', md5($this->input->post('password')))==1)
-      {$data['session'] = $this->getSession($this->getDataRow('account', 'username', $this->input->post('username'))->id);}
+      {
+        $data['session'] = $this->getSession($this->getDataRow('account', 'username', $this->input->post('username'))->id);
+        notify('Berhasil', 'Selamat datang '.$this->input->post('username'), 'success', 'fas fa-check', null);
+      }
       else { $this->session->set_flashdata('notify', 'Maaf kombinasi yang anda masukan salah, silahkan coba lagi');}
       return $data;
     }
