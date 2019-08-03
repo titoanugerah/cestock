@@ -116,6 +116,13 @@ class Admin_model extends CI_Model
     return $data;
   }
 
+  public function createClassifier()
+  {
+    $data = array('classifier' => $this->input->post('classifier'), 'description' => $this->input->post('description'), 'classifier_code' => $this->input->post('classifier_code'), 'id_admin' => $this->session->userdata['id'], 'status' => 1);
+    $this->db->insert('classifier', $data);
+    notify('Berhasil', 'Pembuatan algoritma klasifikasi '.$this->input->post('classifier').' berhasil dilakukan ', 'success', 'fas fa-check', 'classifier');
+  }
+
 }
 
 

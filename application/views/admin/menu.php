@@ -1,4 +1,4 @@
-<li class="nav-item <?php if($view_name=='webconf' || $view_name=='category'){echo 'active';} ?>">
+<li class="nav-item <?php if($view_name=='webconf' || $view_name=='category' || $view_name=='classifier'){echo 'active';} ?>">
   <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
     <i class="fas fa-home"></i>
     <p>Konfigurasi</p>
@@ -17,7 +17,7 @@
         </a>
       </li>
       <li>
-        <a href="<?php echo base_url('algorithm'); ?>">
+        <a href="<?php echo base_url('classifier'); ?>">
           <span class="sub-item">Algoritma</span>
         </a>
       </li>

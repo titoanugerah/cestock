@@ -28,6 +28,7 @@ class Admin extends CI_Controller
 
   public function classifier()
   {
+    if ($this->input->post('createClassifier')) {$this->admin_model->createClassifier();}
     $this->load->view('template',$this->admin_model->cClassifier());
   }
 }
