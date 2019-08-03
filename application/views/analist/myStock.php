@@ -20,7 +20,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Basic</h4>
+        <h4 class="card-title">Panel Saham</h4>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -90,6 +90,15 @@
                 <select class="select2basic form-control" name="id_category" style="width:350px">
                   <?php foreach ($category as $items): ?>
                     <option value="<?php echo $items->id ?>"><?php echo $items->category; ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+
+              <div class="form-group col-12 col-md-12">
+                <label>Algoritma Klasifikasi</label> &nbsp;&nbsp;&nbsp;&nbsp;
+                <select class="select2basic form-control" name="id_classifier" style="width:270px">
+                  <?php foreach ($classifier as $items): ?>
+                    <option value="<?php echo $items->id ?>"><?php echo $items->classifier; ?></option>
                   <?php endforeach; ?>
                 </select>
               </div>
@@ -179,6 +188,15 @@
                         <select class="select2basic form-control" name="id_category" style="width:200px">
                           <?php foreach ($category as $items): ?>
                             <option value="<?php echo $items->id ?>" <?php if($items->id==$item->id_category){echo 'selected';} ?>><?php echo $items->category; ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-12 col-md-12">
+                        <label>Algoritma Klasifikasi</label> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <select class="select2basic form-control" name="id_classifier" style="width:270px">
+                          <?php foreach ($classifier as $items): ?>
+                            <option value="<?php echo $items->id ?>" <?php if($item->id_classifier = $items->id){echo 'selected';} ?>><?php echo $items->classifier; ?></option>
                           <?php endforeach; ?>
                         </select>
                       </div>

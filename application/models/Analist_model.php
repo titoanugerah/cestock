@@ -103,6 +103,7 @@ class Analist_model extends CI_Model
     $data['category'] = $this->getAllData('category');
     $data['myStock'] = $this->getSomeData('stock', 'id_analist', $this->session->userdata['id']);
     $data['myStock1'] = $this->getSomeData('stock', 'id_analist', $this->session->userdata['id']);
+    $data['classifier'] = $this->getSomeData('classifier', 'status', 1);
     $data['view_name'] = 'myStock';
     return $data;
   }
@@ -114,6 +115,7 @@ class Analist_model extends CI_Model
     'stock_code' => $this->input->post('stock_code'),
     'id_category' => $this->input->post('id_category'),
     'id_analist' => $this->session->userdata['id'],
+    'id_classifier' => $this->input->post('id_classifier'),
     );
     $this->db->insert('stock', $data);
     $this->updateData('stock', 'id', $this->db->insert_id(), 'model', $this->input->post('stock_code').$this->uploadFile($this->input->post('stock_code'), '*')['ext']);
@@ -126,6 +128,7 @@ class Analist_model extends CI_Model
     'stock_name' => $this->input->post('stock_name'),
     'stock_code' => $this->input->post('stock_code'),
     'id_category' => $this->input->post('id_category'),
+    'id_classifier' => $this->input->post('id_classifier'),
     );
     $this->db->where($where = array('id' => $this->input->post('id')));
     $this->db->update('stock', $data);
@@ -156,7 +159,7 @@ class Analist_model extends CI_Model
   {
     foreach ($this->getSomeData('stock', 'id_analist', $this->session->userdata['id']) as $item) {
       $this->getStockData($item->stock_code);
-      $this->updateData('stock','id', $item->id, 'prediction_1', prediction($item->stock_code));
+      $this->updateData('stock','id', $item->id, 'prediction_1', prediction($item->stock_code, $this->getDataRow('classifier', 'id', $item->id_classifier)->classifier_code));
     }
   }
 
