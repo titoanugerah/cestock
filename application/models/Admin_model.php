@@ -111,6 +111,7 @@ class Admin_model extends CI_Model
 
   public function cClassifier()
   {
+    $data['classifier'] = $this->getAllData('classifier');
     $data['view_name'] = 'classifier';
     $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
     return $data;
@@ -121,6 +122,25 @@ class Admin_model extends CI_Model
     $data = array('classifier' => $this->input->post('classifier'), 'description' => $this->input->post('description'), 'classifier_code' => $this->input->post('classifier_code'), 'id_admin' => $this->session->userdata['id'], 'status' => 1);
     $this->db->insert('classifier', $data);
     notify('Berhasil', 'Pembuatan algoritma klasifikasi '.$this->input->post('classifier').' berhasil dilakukan ', 'success', 'fas fa-check', 'classifier');
+  }
+
+  public function deleteClassification()
+  {
+    if (md5($this->input->post('password'))==$this->session->userdata['password']){$this->updateData('classifier', 'id', $this->input->post('id'), 'status', 0); notify('Berhasil Terhapus', 'klasifikasi berhasil dihapus ', 'success', 'fas fa-trash', null);}
+    else {notify('Gagal', 'Proses penghapusan klasifikasi gagal, password yang anda masukan tidak cocok', 'danger', 'fas fa-user-times', null);}
+  }
+
+  public function updateClassifier()
+  {
+    $data = array('classifier' => $this->input->post('classifier'), 'description' => $this->input->post('description'), 'classifier_code' => $this->input->post('classifier_code'), 'id_admin' => $this->session->userdata['id'], 'status' => 1);
+    $this->db->where($where = array('id' => $this->input->post('id')));
+    $this->db->update('classifier', $data);
+    {notify('Sukses', 'Proses update klasifikasi '.$this->input->post('classifier').' berhasil dilakukan','success','fas fa-check',null);}
+  }
+
+  public function recoverClassifier()
+  {
+    $this->updateData('classifier', 'id', $this->input->post('id'), 'status', 1); notify('Berhasil kembali', 'Klasifikasi berhasil dikembalikan ', 'success', 'fas fa-trash', null);
   }
 
 }
