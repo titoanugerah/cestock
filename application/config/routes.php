@@ -14,6 +14,10 @@ $route['profile'] = 'general/profile';
 $route['webconf'] = 'admin/webconf';
 $route['category'] = 'admin/category';
 
+
+//ANALIST
+$route['myStock'] = 'analist/myStock';
+
 //SYSTEM AREA
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
