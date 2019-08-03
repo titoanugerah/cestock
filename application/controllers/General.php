@@ -42,6 +42,13 @@ class General extends CI_Controller
     if ($this->input->post('createUser')) {$this->general_model->createUser();}
     $this->load->view('createUser', $this->general_model->cCreateUser());
   }
+
+  public function profile()
+  {
+    if($this->input->post('updateAccount')){$this->session->set_userdata($this->general_model->updateAccount());}
+    elseif($this->input->post('uploadDP')){$this->session->set_userdata($this->general_model->uploadDP());}
+    $this->load->view('template', $this->general_model->cProfile());
+  }
 }
 
 

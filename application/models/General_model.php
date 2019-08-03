@@ -87,6 +87,25 @@ class General_model extends CI_Model
       error_reporting(0);
     }
 
+    public function uploadFile($filename,$allowedFile)
+    {
+      $config['upload_path'] = APPPATH.'../assets/upload/';
+      $config['overwrite'] = TRUE;
+      $config['file_name']     =  str_replace(' ','_',$filename);
+      $config['allowed_types'] = $allowedFile;
+      $this->load->library('upload', $config);
+      if (!$this->upload->do_upload('fileUpload')) {
+        $upload['status']=0;
+        $upload['message']= "Mohon maaf terjadi error saat proses upload : ".$this->upload->display_errors();
+      } else {
+        $upload['status']=1;
+        $upload['message'] = "File berhasil di upload";
+        $upload['ext'] = $this->upload->data('file_ext');
+      }
+      $this->session->set_flashdata('message', $upload['message']);
+      return $upload;
+    }
+
     //APPLICATION
     public function cLogin()
     {
@@ -158,6 +177,41 @@ class General_model extends CI_Model
       return $data;
     }
 
+    public function cProfile()
+    {
+      $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+      $data['view_name'] = 'profile';
+      return $data;
+    }
+
+    public function updateAccount()
+    {
+      if ($this->input->post('password')=='') {
+        $data = array(
+          'username' => $this->input->post('username'),
+          'email' => $this->input->post('email'),
+          'fullname' => $this->input->post('fullname'),
+        );
+      } else {
+        $data = array(
+          'username' => $this->input->post('username'),
+          'email' => $this->input->post('email'),
+          'fullname' => $this->input->post('fullname'),
+          'password' => md5($this->input->post('password'))
+        );
+
+      }
+      $this->db->where($where = array('id' => $this->session->userdata['id']));
+      $this->db->update('account', $data);
+      notify('Berhasil', 'Update profil pengguna berhasil dilakukan', 'success', 'fas fa-check', null);
+      return $this->getSession($this->session->userdata['id']);
+    }
+
+    public function uploadDP()
+    {
+      $this->updateData('account', 'id', $this->session->userdata['id'], 'display_picture', 'display_picture_'.$this->session->userdata['id'].$this->uploadFile('display_picture_'.$this->session->userdata['id'],'jpg|jpeg|png')['ext']);
+      return $this->getSession($this->session->userdata['id']);
+    }
   }
 
 
