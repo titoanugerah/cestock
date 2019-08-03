@@ -54,6 +54,37 @@ class Analist_model extends CI_Model
     return $upload;
   }
 
+  //FUNCTIONAL
+  public function downloadStock($stock)
+  {
+    $objPHPExcel = new PHPExcel();
+    $x=1; $class = array('BUY', 'HOLD', 'SELL');
+    $data = $this->getStock($stock);
+    $dtest = array();$dtest[0] = ('High,Low,Close,Volume,PP,R1,R2,R3,S1,S2,S3,CLASS');
+    for ($i=2; $i < $data['count']; $i++) {
+      $date = $data['row'][$i][0];
+      $open = floatval(number_format($data['row'][$i][1],2));
+      $high = floatval(number_format($data['row'][$i][2],2));
+      $low = floatval(number_format($data['row'][$i][3],2));
+      $close = floatval(number_format($data['row'][$i][4],2));
+      $volume = ((int)$data['row'][$i][5]);
+      $PP = ($high + $low + $close)/3;
+      $R1 = (2*$PP) - $low;
+      $R2 = $PP+($high-$low);
+      $R3 = $high + (2*($PP-$low));
+      $S1 = (2*$PP) - $high;
+      $S2 = $PP - ($high - $low);
+      $S3 = $low - (2*($high - $PP));
+      $dtest[$x] = ($high.','.$low.','.$close.','.$volume.','.$PP.','.$R1.','.$R2.','.$R3.','.$S1.','.$S2.','.$S3.','.$class[rand(0,2)]);
+      $x++;
+    }
+    $fp = fopen('balance_csv.csv', 'w');
+    foreach($dtest as $line){$val = explode(",",$line);fputcsv($fp, $val);}
+    fclose($fp);//end
+    return true;
+  }
+
+
   //APPLICATION
   public function cMyStock()
   {
@@ -108,6 +139,13 @@ class Analist_model extends CI_Model
   {
     $this->updateData('stock', 'id', $this->input->post('id'), 'status', 1);
     notify('Berhasil', 'Proses pengembalian saham berhasil dilakukan', 'success', 'fas fa-check', 'myStock');
+  }
+
+
+
+  public function refreshStock()
+  {
+    var_dump(prediction('MEDC.JK'));die;
 
   }
 }

@@ -5,9 +5,13 @@
         <h2 class="text-white pb-2 fw-bold">Saham Saya</h2>
         <h5 class="text-white op-7 mb-2"> Halaman panel pengelolaan saham</h5>
       </div>
+
       <div class="ml-md-auto py-2 py-md-0">
-        <button type="button" class="btn btn-success btn-round" data-toggle="modal" data-target="#createStock">Tambah saham</button> &nbsp;
-        <button type="button" class="btn btn-success btn-round" data-toggle="modal" data-target="#recoverStock">Kembalikan saham terhapus</button>
+        <form  method="post">
+          <button type="button" class="btn btn-success btn-round" data-toggle="modal" data-target="#createStock">Tambah saham</button> &nbsp;
+          <button type="button" class="btn btn-success btn-round" data-toggle="modal" data-target="#recoverStock">Kembalikan saham terhapus</button> &nbsp;
+        <button type="submit" class="btn btn-success btn-round" name="refreshStock" value="refreshStock">Perbaharui Saham</button>
+      </form>
       </div>
     </div>
   </div>
