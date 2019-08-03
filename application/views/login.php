@@ -66,7 +66,7 @@
             <button type="submit" class="login100-form-btn" name="loginValidation" value="loginValidation">Masuk</button>
           </div>
           <div class="w-full text-center p-t-3">
-            <a href="<?php echo base_url('createUser'); ?>#" class="txt2 bo1">
+            <a href="<?php echo base_url('createUser'); ?>" class="txt2 bo1">
               Daftar Sekarang
             </a>
           </div>

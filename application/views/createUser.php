@@ -34,27 +34,36 @@
       <div class="wrap-login100 p-l-30 p-r-30 p-t-32 p-b-3">
         <form class="login100-form validate-form flex-sb flex-w" method="post">
           <span class="login100-form-title p-b-2">
-            Silahkan Login
+            Buat Akun
           </span>
           <p style="align:center;"><?php echo $this->session->userdata['notify']; ?></p>
-
           <div class="p-t-31 p-b-2">
+            <span class="txt1">
+              Username
+            </span>
+          </div>
+          <div class="wrap-input100 validate-input" data-validate = "Mohon username diisi">
+            <input class="input100" type="text" name="username"  placeholder="Masukan username anda">
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="p-t-13 p-b-9">
             <span class="txt1">
               Email
             </span>
           </div>
           <div class="wrap-input100 validate-input" data-validate = "Mohon email diisi">
-            <input class="input100" type="email" name="email"  placeholder="Masukan email anda">
+            <input class="input100" type="email" name="email" placeholder="Masukan email anda">
             <span class="focus-input100"></span>
           </div>
-          <br><br>
+
           <div class="container-login100-form-btn m-t-17">
-            <button type="submit" class="login100-form-btn" name="resetPassword" value="resetPassword">Reset Password</button>
+            <button type="submit" class="login100-form-btn" name="createUser" value="createUser">Buat Akun</button>
           </div>
-          <br><br><br><br>
           <div class="w-full text-center p-t-3">
-            <a href="<?php echo base_url('createUser'); ?>" class="txt2 bo1">Daftar Sekarang</a>  &nbsp;| &nbsp;
-            <a href="<?php echo base_url('login'); ?>" class="txt2 bo1">Kembali ke login</a>
+            <a href="<?php echo base_url('login'); ?>" class="txt2 bo1">
+              Login
+            </a>
           </div>
         </form>
       </div>
@@ -62,6 +71,7 @@
   </div>
 
 
+  <div id="dropDownSelect1"></div>
 
   <!--===============================================================================================-->
   <script src="<?php echo base_url('./assets/template/login/'); ?>vendor/jquery/jquery-3.2.1.min.js"></script>

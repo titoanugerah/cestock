@@ -6,6 +6,7 @@ $route['login'] = 'general/login';
 $route['forgotPassword'] = 'general/forgotPassword';
 $route['dashboard'] = 'general/dashboard';
 $route['logout'] = 'general/logout';
+$route['createUser'] = 'general/createUser';
 
 //SYSTEM AREA
 $route['default_controller'] = 'welcome';

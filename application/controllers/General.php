@@ -36,6 +36,12 @@ class General extends CI_Controller
     $this->session->sess_destroy();
     redirect(base_url('login'));
   }
+
+  public function createUser()
+  {
+    if ($this->input->post('createUser')) {$this->general_model->createUser();}
+    $this->load->view('createUser', $this->general_model->cCreateUser());
+  }
 }
 
 
