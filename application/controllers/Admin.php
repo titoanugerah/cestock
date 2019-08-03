@@ -19,6 +19,9 @@ class Admin extends CI_Controller
 
   public function category()
   {
+    if ($this->input->post('createCategory')) {$this->admin_model->createCategory();}
+    elseif ($this->input->post('deleteCategory')) {$this->admin_model->deleteCategory();}
+    elseif ($this->input->post('updateCategory')) {$this->admin_model->updateCategory();}
     $this->load->view('template',$this->admin_model->cCategory());
   }
 }
