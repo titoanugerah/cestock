@@ -10,7 +10,10 @@ class Admin extends CI_Controller
     $this->load->model('admin_model');
   }
 
-
+  public function webconf()
+  {
+    $this->load->view('template',$this->admin_model->cWebconf);
+  }
 }
 
 
