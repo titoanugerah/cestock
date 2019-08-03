@@ -12,6 +12,7 @@ $route['profile'] = 'general/profile';
 
 //ADMIN
 $route['webconf'] = 'admin/webconf';
+$route['category'] = 'admin/category';
 
 //SYSTEM AREA
 $route['default_controller'] = 'welcome';

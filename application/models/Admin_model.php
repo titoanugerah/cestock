@@ -15,6 +15,11 @@ class Admin_model extends CI_Model
     return $this->db->get_where($table, $where = array($whereVar => $whereVal))->row();
   }
 
+  public function getAllData($table)
+  {
+    return $this->db->get($table)->result();
+  }
+
   //APPLICATION
   public function cWebconf()
   {
@@ -36,6 +41,14 @@ class Admin_model extends CI_Model
     $this->db->where($where = array('id' => 1));
     if($this->db->update('webconf',$data = array('host' => $this->input->post('host'), 'crypto' => $this->input->post('crypto'), 'port' => $this->input->post('port'), 'email' => $this->input->post('email'), 'password' => $this->input->post('password'))))
     {notify('Update Berhasil', 'Proses perubahan email berhasil dilakukan', 'success', 'fas fa-sign-language', null);}
+  }
+
+  public function cCategory()
+  {
+    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+    $data['category'] = $this->getAllData('category');
+    $data['view_name'] = 'category';
+    return $data;
   }
 }
 

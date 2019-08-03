@@ -16,6 +16,11 @@ class Admin extends CI_Controller
     else if ($this->input->post('updateEmail')) {$this->admin_model->updateInfo();}
     $this->load->view('template',$this->admin_model->cWebconf());
   }
+
+  public function category()
+  {
+    $this->load->view('template',$this->admin_model->cCategory());
+  }
 }
 
 
