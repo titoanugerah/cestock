@@ -28,6 +28,12 @@ class General extends CI_Controller
   {
     echo $this->session->userdata['role'];
   }
+
+  public function logout()
+  {
+    $this->session->sess_destroy();
+    redirect(base_url('login'));
+  }
 }
 
 
