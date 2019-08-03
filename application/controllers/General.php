@@ -7,6 +7,7 @@ class General extends CI_Controller
   {
     parent::__construct();
     $this->load->model('general_model');
+    error_reporting(0);
   }
 
   public function login()
@@ -21,7 +22,8 @@ class General extends CI_Controller
 
   public function forgotPassword()
   {
-    // code...
+    if ($this->input->post('resetPassword')) {$this->general_model->resetPassword();}
+    $this->load->view('forgotPassword', $this->general_model->cForgotPassword());
   }
 
   public function dashboard()

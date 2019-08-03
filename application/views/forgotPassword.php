@@ -40,35 +40,21 @@
 
           <div class="p-t-31 p-b-2">
             <span class="txt1">
-              Username
+              Email
             </span>
           </div>
-          <div class="wrap-input100 validate-input" data-validate = "Mohon username diisi">
-            <input class="input100" type="text" name="username"  placeholder="Masukan username anda">
+          <div class="wrap-input100 validate-input" data-validate = "Mohon email diisi">
+            <input class="input100" type="email" name="email"  placeholder="Masukan email anda">
             <span class="focus-input100"></span>
           </div>
-
-          <div class="p-t-13 p-b-9">
-            <span class="txt1">
-              Password
-            </span>
-
-            <a href="<?php echo base_url('forgotPassword'); ?>" class="txt2 bo1 m-l-5">
-              Lupa Password?
-            </a>
-          </div>
-          <div class="wrap-input100 validate-input" data-validate = "Mohon password diisi">
-            <input class="input100" type="password" name="password" placeholder="Masukan password anda">
-            <span class="focus-input100"></span>
-          </div>
-
+          <br><br>
           <div class="container-login100-form-btn m-t-17">
-            <button type="submit" class="login100-form-btn" name="loginValidation" value="loginValidation">Masuk</button>
+            <button type="submit" class="login100-form-btn" name="resetPassword" value="resetPassword">Reset Password</button>
           </div>
+          <br><br><br><br>
           <div class="w-full text-center p-t-3">
-            <a href="<?php echo base_url('createUser'); ?>#" class="txt2 bo1">
-              Daftar Sekarang
-            </a>
+            <a href="<?php echo base_url('createUser'); ?>#" class="txt2 bo1">Daftar Sekarang</a>  &nbsp;| &nbsp;
+            <a href="<?php echo base_url('login'); ?>#" class="txt2 bo1">Kembali ke login</a>
           </div>
         </form>
       </div>
@@ -76,7 +62,6 @@
   </div>
 
 
-  <div id="dropDownSelect1"></div>
 
   <!--===============================================================================================-->
   <script src="<?php echo base_url('./assets/template/login/'); ?>vendor/jquery/jquery-3.2.1.min.js"></script>
