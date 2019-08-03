@@ -28,7 +28,7 @@ class General extends CI_Controller
 
   public function dashboard()
   {
-    echo $this->session->userdata['role'];
+    $this->load->view('template', $this->general_model->cDashboard();
   }
 
   public function logout()

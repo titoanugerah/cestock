@@ -147,6 +147,13 @@ class General_model extends CI_Model
         $this->session->set_flashdata('notify', 'Akun sudah tersedia');
       }
     }
+
+    public function cDashboard()
+    {
+      $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+      return $data;
+    }
+
   }
 
 
