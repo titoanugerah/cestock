@@ -25,6 +25,11 @@ class Admin extends CI_Controller
     elseif ($this->input->post('recoverCategory')) {$this->admin_model->recoverCategory();}
     $this->load->view('template',$this->admin_model->cCategory());
   }
+
+  public function classifier()
+  {
+    $this->load->view('template',$this->admin_model->cClassifier());
+  }
 }
 
 

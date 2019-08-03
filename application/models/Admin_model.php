@@ -71,10 +71,10 @@ class Admin_model extends CI_Model
 
   public function cCategory()
   {
-    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
     $data['category'] = $this->getAllData('category');
     $data['detailCategory'] = $this->getAllData('category');
     $data['view_name'] = 'category';
+    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
     return $data;
   }
 
@@ -107,6 +107,13 @@ class Admin_model extends CI_Model
   public function recoverCategory()
   {
     $this->updateData('category', 'id', $this->input->post('id'), 'status', 1); notify('Berhasil kembali', 'Kategori berhasil dikembalikan ', 'success', 'fas fa-trash', null);
+  }
+
+  public function cClassifier()
+  {
+    $data['view_name'] = 'classifier';
+    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+    return $data;
   }
 
 }
