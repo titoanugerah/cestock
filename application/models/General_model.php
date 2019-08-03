@@ -18,6 +18,11 @@ class General_model extends CI_Model
     return $this->db->get_where($table, $where = array($whereVar => $whereVal))->row();
   }
 
+  public function getNumRow($table, $whereVar1, $whereVal1)
+  {
+    return $this->db->get_where($table, $where = array($whereVar1 => $whereVal1))->num_rows();
+  }
+
   public function getNumRow2($table, $whereVar1, $whereVal1, $whereVar2, $whereVal2)
   {
     return $this->db->get_where($table, $where = array($whereVar1 => $whereVal1,$whereVar2 => $whereVal2))->num_rows();
@@ -105,10 +110,12 @@ class General_model extends CI_Model
 
   public function resetPassword()
   {
-    if ($this->getNumRow2('account', 'email', $this->input->post('email'))>0) {
+    if ($this->getNumRow('account', 'email', $this->input->post('email'))>0) {
       $newPassword = rand(100000, 999999);
       $this->updateData('account', 'email', $this->input->post('email'), 'password', md5($newPassword));
       $this->sentEmail($this->input->post('email'), $this->getDataRow('account', 'email', $this->input->post('email'))->fullname, 'Reset Password', 'Password anda '.$newPassword);
+    } else {
+      $this->session->set_flashdata('notify', 'Maaf email tidak tersedia, silahkan coba lagi');
     }
   }
 }
