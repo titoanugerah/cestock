@@ -12,7 +12,9 @@ class Admin extends CI_Controller
 
   public function webconf()
   {
-    $this->load->view('template',$this->admin_model->cWebconf);
+    if ($this->input->post('updateInfo')) {$this->admin_model->updateInfo();}
+    else if ($this->input->post('updateEmail')) {$this->admin_model->updateInfo();}
+    $this->load->view('template',$this->admin_model->cWebconf());
   }
 }
 
