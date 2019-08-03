@@ -13,7 +13,7 @@ $route['profile'] = 'general/profile';
 //ADMIN
 $route['webconf'] = 'admin/webconf';
 $route['category'] = 'admin/category';
-
+$route['algorithm'] = 'admin/algorithm';
 
 //ANALIST
 $route['myStock'] = 'analist/myStock';

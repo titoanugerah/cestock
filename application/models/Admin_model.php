@@ -104,6 +104,11 @@ class Admin_model extends CI_Model
     {notify('Sukses', 'Proses update kategori '.$this->input->post('name').' berhasil dilakukan','success','fas fa-check',null);}
   }
 
+  public function recoverCategory()
+  {
+    $this->updateData('category', 'id', $this->input->post('id'), 'status', 1); notify('Berhasil kembali', 'Kategori berhasil dikembalikan ', 'success', 'fas fa-trash', null);
+  }
+
 }
 
 

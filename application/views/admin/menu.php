@@ -16,7 +16,11 @@
           <span class="sub-item">Kategori</span>
         </a>
       </li>
-
+      <li>
+        <a href="<?php echo base_url('algorithm'); ?>">
+          <span class="sub-item">Algoritma</span>
+        </a>
+      </li>
     </ul>
   </div>
 </li>
