@@ -7,6 +7,7 @@ class General extends CI_Controller
   {
     parent::__construct();
     $this->load->model('general_model');
+    $this->load->model('admin_model');
     error_reporting(0);
   }
 
@@ -52,6 +53,7 @@ class General extends CI_Controller
 
   public function detailAccount($id)
   {
+    if($this->input->post('deleteStock')){$this->admin_model->deleteStock();}
     $this->load->view('template', $this->general_model->cDetailAccount($id));
   }
 }

@@ -208,6 +208,12 @@ class Admin_model extends CI_Model
      notify('Berhasil', 'Proses pembuatan akun analist berhasil dilakukan ', 'success','fas fa-user','account');
   }
 
+  public function deleteStock()
+  {
+    if (md5($this->input->post('password'))==$this->session->userdata['password']){$this->updateData('stock', 'id', $this->input->post('id'), 'status', 0); notify('Berhasil Terhapus', 'saham berhasil dihapus ', 'success', 'fas fa-trash', null);}
+    else {notify('Gagal', 'Proses penghapusan saham gagal, password yang anda masukan tidak cocok', 'danger', 'fas fa-user-times', null);}
+  }
+
 }
 
 

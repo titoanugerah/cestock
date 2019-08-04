@@ -23,6 +23,16 @@ class General_model extends CI_Model
     return $this->db->get_where($table, $where = array($whereVar1 => $whereVal1))->num_rows();
   }
 
+  public function getSomeData($table, $whereVar1, $whereVal1)
+  {
+    return $this->db->get_where($table, $where = array($whereVar1 => $whereVal1))->result();
+  }
+
+  public function getAllData($table)
+  {
+    return $this->db->get($table)->result();
+  }
+
   public function getNumRow2($table, $whereVar1, $whereVal1, $whereVar2, $whereVal2)
   {
     return $this->db->get_where($table, $where = array($whereVar1 => $whereVal1,$whereVar2 => $whereVal2))->num_rows();
@@ -216,6 +226,9 @@ class General_model extends CI_Model
     public function cDetailAccount($id)
     {
       $data['account'] = $this->getDataRow('account', 'id', $id);
+      $data['stock'] = $this->getSomeData('stock', 'id_analist', $id);
+      $data['category'] = $this->getAllData('category');
+      $data['classifier'] = $this->getAllData('classifier');
       $data['view_name'] = 'detailAccount'.ucfirst($data['account']->role);
       $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
       return $data;
