@@ -49,6 +49,11 @@ class General extends CI_Controller
     elseif($this->input->post('uploadDP')){$this->session->set_userdata($this->general_model->uploadDP());}
     $this->load->view('template', $this->general_model->cProfile());
   }
+
+  public function detailAccount($id)
+  {
+    echo $id;
+  }
 }
 
 

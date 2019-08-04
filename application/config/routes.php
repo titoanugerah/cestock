@@ -8,13 +8,13 @@ $route['dashboard'] = 'general/dashboard';
 $route['logout'] = 'general/logout';
 $route['createUser'] = 'general/createUser';
 $route['profile'] = 'general/profile';
+$route['detailAccount/(:any)'] = 'general/detailAccount/$1';
 
 //ADMIN
 $route['webconf'] = 'admin/webconf';
 $route['category'] = 'admin/category';
 $route['classifier'] = 'admin/classifier';
 $route['account'] = 'admin/account';
-
 //ANALIST
 $route['myStock'] = 'analist/myStock';
 
