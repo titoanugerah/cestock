@@ -212,7 +212,18 @@ class General_model extends CI_Model
       $this->updateData('account', 'id', $this->session->userdata['id'], 'display_picture', 'display_picture_'.$this->session->userdata['id'].$this->uploadFile('display_picture_'.$this->session->userdata['id'],'jpg|jpeg|png')['ext']);
       return $this->getSession($this->session->userdata['id']);
     }
+
+    public function cDetailAccount($id)
+    {
+      $data['account'] = $this->getDataRow('account', 'id', $id);
+      $data['view_name'] = 'detailAccount'.ucfirst($data['account']->role);
+      $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+      return $data;
+
+    }
+
   }
+
 
 
   ?>

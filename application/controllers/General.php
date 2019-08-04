@@ -52,7 +52,7 @@ class General extends CI_Controller
 
   public function detailAccount($id)
   {
-    echo $id;
+    $this->load->view('template', $this->general_model->cDetailAccount($id));
   }
 }
 
