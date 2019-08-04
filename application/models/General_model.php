@@ -232,7 +232,6 @@ class General_model extends CI_Model
       $data['view_name'] = 'detailAccount'.ucfirst($data['account']->role);
       $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
       return $data;
-
     }
 
   }

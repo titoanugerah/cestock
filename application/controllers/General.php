@@ -54,6 +54,8 @@ class General extends CI_Controller
   public function detailAccount($id)
   {
     if($this->input->post('deleteStock')){$this->admin_model->deleteStock();}
+    elseif($this->input->post('deleteAccount')){$this->admin_model->deleteAccount();}
+    elseif($this->input->post('recoverAccount')){$this->admin_model->recoverAccount();}
     $this->load->view('template', $this->general_model->cDetailAccount($id));
   }
 }

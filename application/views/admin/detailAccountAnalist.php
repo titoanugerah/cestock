@@ -65,7 +65,49 @@
                     </div>
                   </div>
                   <div class="tab-pane fade" id="tab3" role="tabpanel" >
-                    fiwhfih
+                    <div class="row">
+                      <div class="col-5 col-md-3">
+                        <div class="nav flex-column nav-pills nav-secondary" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                          <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home<?php echo $account->status;  ?>" role="tab" aria-controls="v-pills-home" aria-selected="false">Hapus/aktifkan Akun</a>
+                          <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true" hidden>Model</a>
+                          <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false" hidden>Hapus</a>
+                        </div>
+                      </div>
+                      <div class="col-7 col-md-8">
+                        <div class="tab-content" id="v-pills-tabContent">
+                          <div class="tab-pane fade active show" id="v-pills-home1" role="tabpanel" aria-labelledby="v-pills-home-tab" <?php if($account->status==0){ echo 'hidden';} ?>>
+                            <p>Apakah anda yakin menghapus akun <?php echo $account->username; ?>? untuk melanjutkan silahkan masukan password anda pada kolom dibawah ini</p>
+                            <div class="form-group col-6 col-md-12">
+                              <input type="password" name="password" class="form-control" placeholder="masukan password anda">
+                              <input type="text" name="id" value="<?php echo $account->id; ?>" hidden>
+                            </div>
+                            <div class="card-footer">
+                              <button type="submit" class="btn btn-danger" name="deleteAccount" value="deleteAccount">Hapus Akun</button>
+                              <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade active show" id="v-pills-home0" role="tabpanel" aria-labelledby="v-pills-home-tab" <?php if($account->status==1){ echo 'hidden';} ?>>
+                            <p>Apakah anda yakin mengaktifkan akun <?php echo $account->username; ?>? untuk melanjutkan silahkan masukan password anda pada kolom dibawah ini</p>
+                            <div class="form-group col-6 col-md-12">
+                              <input type="password" name="password" class="form-control" placeholder="masukan password anda">
+                              <input type="text" name="id" value="<?php echo $account->id; ?>" hidden>
+                            </div>
+                            <div class="card-footer">
+                              <button type="submit" class="btn btn-success" name="recoverAccount" value="recoverAccount">Aktifkan Akun</button>
+                              <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            fwfw
+                          </div>
+                          <div class="tab-pane fade" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            fwfw
+                          </div>
+
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
                 </div>
               </div>
