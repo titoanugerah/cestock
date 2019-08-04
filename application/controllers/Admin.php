@@ -14,6 +14,7 @@ class Admin extends CI_Controller
   {
     if ($this->input->post('updateInfo')) {$this->admin_model->updateInfo();}
     else if ($this->input->post('updateEmail')) {$this->admin_model->updateInfo();}
+    else if ($this->input->post('uploadWeka')) {$this->admin_model->uploadWeka();}
     $this->load->view('template',$this->admin_model->cWebconf());
   }
 
@@ -33,6 +34,11 @@ class Admin extends CI_Controller
     elseif ($this->input->post('deleteClassification')) {$this->admin_model->deleteClassification();}
     elseif ($this->input->post('recoverClassifier')) {$this->admin_model->recoverClassifier();}
     $this->load->view('template',$this->admin_model->cClassifier());
+  }
+
+  public function account()
+  {
+    $this->load->view('template', $this->admin_model->cAccount());
   }
 }
 

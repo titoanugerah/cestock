@@ -24,3 +24,10 @@
     </ul>
   </div>
 </li>
+
+<li class="nav-item  <?php if($view_name=='account'){echo 'active';} ?>">
+  <a href="<?php echo base_url('account') ?>">
+    <i class="fas fa-users"></i>
+    <p>Akun</p>
+  </a>
+</li>

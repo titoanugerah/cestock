@@ -15,7 +15,9 @@
   <div class="nav-scroller">
     <div class="nav nav-tabs nav-line nav-color-secondary d-flex align-items-center justify-contents-center w-100">
       <a class="nav-link active show" data-toggle="tab" href="#tab1">Informasi Umum</a>
-      <a class="nav-link mr-5" data-toggle="tab" href="#tab2">Email</a>
+      <a class="nav-link" data-toggle="tab" href="#tab2">Email</a>
+      <a class="nav-link" data-toggle="tab" href="#tab3">Machine Learning</a>
+
     </div>
   </div>
 </div>
@@ -50,7 +52,7 @@
       </form>
     </div>
     <div class="tab-pane fade show" id="tab2" role="tabpanel" >
-        <form method="post">
+      <form method="post">
         <div class="card-body">
           <div class="row">
             <div class="form-group col-6 col-md-3">
@@ -82,6 +84,27 @@
         </div>
         <div class="card-footer">
           <button type="submit" class="btn btn-info"  name="updateEmail" value="updateEmail">Update Data</button>
+        </div>
+      </form>
+    </div>
+    <div class="tab-pane fade show" id="tab3" role="tabpanel" >
+      <form method="post" enctype="multipart/form-data">
+        <div class="card-body">
+          <div class="row">
+            <div class="card card-secondary card-annoucement card-round col-8" >
+              <div class="card-body text-center">
+                <div class="card-opening">Machine Learning</div>
+                <div class="card-desc">
+                  Sistem informasi ini menggunakan WEKA API sebagai Application Program Interface untuk membantu memprediksi saham (HOLD/SELL/BUY), untuk mengganti versi dari API ini dapat mengunggah pada kolom kanan
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-4">
+              <input type="file" name="fileUpload" class="btn btn-primary" required>
+              <br><br>
+              <button type="submit" class="btn btn-info"  name="uploadWeka" value="uploadWeka">Upload Machine Learning</button>
+            </div>
+          </div>
         </div>
       </form>
     </div>

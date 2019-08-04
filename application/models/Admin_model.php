@@ -143,6 +143,21 @@ class Admin_model extends CI_Model
     $this->updateData('classifier', 'id', $this->input->post('id'), 'status', 1); notify('Berhasil kembali', 'Klasifikasi berhasil dikembalikan ', 'success', 'fas fa-trash', null);
   }
 
+  public function uploadWeka()
+  {
+    $this->uploadFile('weka', '*');
+    notify('Berhasil', 'Proses upload API berhasil', 'success', 'fas fa-check', null);
+  }
+
+  public function cAccount()
+  {
+    $data['account'] = $this->getAllData('account');
+    $data['view_name'] = 'classifier';
+    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+    return $data;
+
+  }
+
 }
 
 
