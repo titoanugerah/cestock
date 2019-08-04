@@ -149,13 +149,18 @@ class Admin_model extends CI_Model
     notify('Berhasil', 'Proses upload API berhasil', 'success', 'fas fa-check', null);
   }
 
-  public function cAccount()
+  public function cAccount($keyword)
   {
-    $data['account'] = $this->getAllData('account');
-    $data['view_name'] = 'classifier';
+//    $data['account'] = $this->getAllData('account');
+    $data['account'] = $this->db->query('select * from account where username LIKE "%'.$keyword.'%" or fullname LIKE "%'.$keyword.'%" or email LIKE "%'.$keyword.'%"')->result();
+    $data['view_name'] = 'account';
     $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
     return $data;
+  }
 
+  public function addAnalist()
+  {
+    $data = array('username' => $this->input->post('username'), 'email' => $this->input->post('email'), );
   }
 
 }

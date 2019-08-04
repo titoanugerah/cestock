@@ -47,11 +47,11 @@
 						<form class="navbar-left navbar-form nav-search mr-md-3" method="post">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<button type="submit" class="btn btn-search pr-1">
+									<button type="submit" class="btn btn-search pr-1" name="search" value="search">
 										<i class="fa fa-search search-icon"></i>
 									</button>
 								</div>
-								<input type="text" placeholder="Search ..." class="form-control" name="keyword">
+								<input type="text" placeholder="Pencarian ..." class="form-control" name="keyword">
 							</div>
 						</form>
 					</div>

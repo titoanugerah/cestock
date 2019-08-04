@@ -38,7 +38,10 @@ class Admin extends CI_Controller
 
   public function account()
   {
-    $this->load->view('template', $this->admin_model->cAccount());
+    $keyword = null;
+    if ($this->input->post('addAnalist')) {$this->admin_model->addAnalist();}
+    elseif ($this->input->post('search')) {$keyword = $this->input->post('keyword');}
+    $this->load->view('template', $this->admin_model->cAccount($keyword));
   }
 }
 
