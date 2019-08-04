@@ -217,13 +217,13 @@ class Admin_model extends CI_Model
   public function deleteAccount()
   {
 //    var_dump($this->input->post('id'));die;
-    if (md5($this->input->post('password'))==$this->session->userdata['password']){$this->updateData('account', 'id', $this->input->post('id'), 'status', 0); notify('Berhasil Terhapus', 'akun berhasil dihapus ', 'success', 'fas fa-trash', 'account');}
+    if (md5($this->input->post('password'))==$this->session->userdata['password']){$this->updateData('account', 'id', $this->input->post('id'), 'status', 0); notify('Berhasil Terhapus', 'akun berhasil dihapus ', 'success', 'fas fa-trash', null);}
     else {notify('Gagal', 'Proses penghapusan akun gagal, password yang anda masukan tidak cocok', 'danger', 'fas fa-user-times', null);}
   }
 
   public function recoverAccount()
   {
-    if (md5($this->input->post('password'))==$this->session->userdata['password']){$this->updateData('account', 'id', $this->input->post('id'), 'status', 1); notify('Berhasil Dikembalikan', 'akun berhasil kembali ', 'success', 'fas fa-user', 'account');}
+    if (md5($this->input->post('password'))==$this->session->userdata['password']){$this->updateData('account', 'id', $this->input->post('id'), 'status', 1); notify('Berhasil Dikembalikan', 'akun berhasil kembali ', 'success', 'fas fa-user', null);}
     else {notify('Gagal', 'Proses pengembalian akun gagal, password yang anda masukan tidak cocok', 'danger', 'fas fa-user-times', null);}
   }
 
