@@ -100,7 +100,7 @@
                             </div>
                             <div class="card-footer">
                               <button type="submit" class="btn btn-danger" name="deleteAccount" value="deleteAccount">Hapus Akun</button>
-                              <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+                              <a href="<?php echo base_url('account'); ?>" class="btn btn-warning" >Kembali</a>
                             </div>
                           </div>
                           <div class="tab-pane fade active show" id="v-pills-home0" role="tabpanel" aria-labelledby="v-pills-home-tab" <?php if($account->status==1){ echo 'hidden';} ?>>
@@ -111,7 +111,7 @@
                             </div>
                             <div class="card-footer">
                               <button type="submit" class="btn btn-success" name="recoverAccount" value="recoverAccount">Aktifkan Akun</button>
-                              <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+                              <a href="<?php echo base_url('account'); ?>" class="btn btn-warning" >Kembali</a>
                             </div>
                           </div>
                           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-home-tab">
@@ -167,14 +167,14 @@
                 <div class="row">
                   <div class="col-5 col-md-3">
                     <div class="nav flex-column nav-pills nav-secondary" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                      <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home<?php echo $item->id;?>" role="tab" aria-controls="v-pills-home" aria-selected="false">Informasi</a>
+                      <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-homes<?php echo $item->id;?>" role="tab" aria-controls="v-pills-home" aria-selected="false">Informasi</a>
                       <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile<?php echo $item->id;?>" role="tab" aria-controls="v-pills-profile" aria-selected="true">Model</a>
                       <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages<?php echo $item->id;?>" role="tab" aria-controls="v-pills-messages" aria-selected="false">Hapus</a>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="tab-content" id="v-pills-tabContent">
-                      <div class="tab-pane fade active show" id="v-pills-home<?php echo $item->id;?>" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                      <div class="tab-pane fade active show" id="v-pills-homes<?php echo $item->id;?>" role="tabpanel" aria-labelledby="v-pills-home-tab">
                         <div class="modal-body">
                           <div class="row">
                             <div class="form-group col-6 col-md-8">

@@ -173,7 +173,7 @@ class General_model extends CI_Model
         );
         $this->db->insert('account', $data);
         $content = 'Kami beritahukan bahwa akun anda berhasil dibuat, silahkan login dengan password '.$newPassword;
-        $this->sentEmail($this->input->post('email'), $this->input->post('username'), $content);
+        $this->sentEmail($this->input->post('email'), $this->input->post('username'), 'Selamat datang pelanggan baru', $content);
         $this->session->set_flashdata('notify', 'Akun berhasil dibuat, silahkan cek email anda');
       } else {
         $this->session->set_flashdata('notify', 'Akun sudah tersedia');
