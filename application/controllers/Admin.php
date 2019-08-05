@@ -43,6 +43,16 @@ class Admin extends CI_Controller
     elseif ($this->input->post('search')) {$keyword = $this->input->post('keyword');}
     $this->load->view('template', $this->admin_model->cAccount($keyword));
   }
+
+  public function pricing()
+  {
+    if ($this->input->post('addPricing')) {$this->admin_model->addPricing();}
+    elseif ($this->input->post('updatePricing')) {$this->admin_model->updatePricing();}
+    elseif ($this->input->post('deletePricing')) {$this->admin_model->deletePricing();}
+    elseif ($this->input->post('recoverPricing')) {$this->admin_model->recoverPricing();}
+
+    $this->load->view('template',$this->admin_model->cPricing());
+  }
 }
 
 

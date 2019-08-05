@@ -15,6 +15,12 @@ class Admin_model extends CI_Model
     return $this->db->get_where($table, $where = array($whereVar => $whereVal))->row();
   }
 
+  public function getNumRow($table, $whereVar, $whereVal)
+  {
+    return $this->db->get_where($table, $where = array($whereVar => $whereVal))->num_rows();
+  }
+
+
   public function getAllData($table)
   {
     return $this->db->get($table)->result();
@@ -183,7 +189,7 @@ class Admin_model extends CI_Model
 
   public function cAccount($keyword)
   {
-//    $data['account'] = $this->getAllData('account');
+    //    $data['account'] = $this->getAllData('account');
     $data['account'] = $this->db->query('select * from account where username LIKE "%'.$keyword.'%" or fullname LIKE "%'.$keyword.'%" or email LIKE "%'.$keyword.'%"')->result();
     $data['view_name'] = 'account';
     $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
@@ -194,18 +200,18 @@ class Admin_model extends CI_Model
   {
     $password = rand(100000,999999);
     $data = array(
-      'username' => $this->input->post('username'),
-      'email' => $this->input->post('email'),
-      'display_picture' => 'no.jpg',
-      'status' => 1,
-      'password' => md5($password),
-      'role' => 'analist',
-      'id_pic' => $this->session->userdata['id'],
-     );
-     $this->db->insert('account', $data);
-     $content = 'Bersamaan dengan email ini kami sampaikan bahwa akun analist anda berhasil diproses, silahkan login dengan username '.$this->input->post('username').' dan password '.$password;
-     $this->sentEmail($this->input->post('email'), $this->input->post('username'), 'Selamat datang analist baru', $content);
-     notify('Berhasil', 'Proses pembuatan akun analist berhasil dilakukan ', 'success','fas fa-user','account');
+    'username' => $this->input->post('username'),
+    'email' => $this->input->post('email'),
+    'display_picture' => 'no.jpg',
+    'status' => 1,
+    'password' => md5($password),
+    'role' => 'analist',
+    'id_pic' => $this->session->userdata['id'],
+    );
+    $this->db->insert('account', $data);
+    $content = 'Bersamaan dengan email ini kami sampaikan bahwa akun analist anda berhasil diproses, silahkan login dengan username '.$this->input->post('username').' dan password '.$password;
+    $this->sentEmail($this->input->post('email'), $this->input->post('username'), 'Selamat datang analist baru', $content);
+    notify('Berhasil', 'Proses pembuatan akun analist berhasil dilakukan ', 'success','fas fa-user','account');
   }
 
   public function deleteStock()
@@ -216,7 +222,7 @@ class Admin_model extends CI_Model
 
   public function deleteAccount()
   {
-//    var_dump($this->input->post('id'));die;
+    //    var_dump($this->input->post('id'));die;
     if (md5($this->input->post('password'))==$this->session->userdata['password']){$this->updateData('account', 'id', $this->input->post('id'), 'status', 0); notify('Berhasil Terhapus', 'akun berhasil dihapus ', 'success', 'fas fa-trash', null);}
     else {notify('Gagal', 'Proses penghapusan akun gagal, password yang anda masukan tidak cocok', 'danger', 'fas fa-user-times', null);}
   }
@@ -225,6 +231,51 @@ class Admin_model extends CI_Model
   {
     if (md5($this->input->post('password'))==$this->session->userdata['password']){$this->updateData('account', 'id', $this->input->post('id'), 'status', 1); notify('Berhasil Dikembalikan', 'akun berhasil kembali ', 'success', 'fas fa-user', null);}
     else {notify('Gagal', 'Proses pengembalian akun gagal, password yang anda masukan tidak cocok', 'danger', 'fas fa-user-times', null);}
+  }
+
+  public function cPricing()
+  {
+    $data['pricing'] = $this->getAllData('pricing');
+    $data['view_name'] = 'pricing';
+    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+    return $data;
+  }
+
+  public function addPricing()
+  {
+    if ($this->getNumRow('pricing', 'package', $this->input->post('package'))==0) {
+      $data = array(
+      'package' => $this->input->post('package'),
+      'duration' => $this->input->post('duration'),
+      'price' => $this->input->post('price'),
+      'id_admin' => $this->session->userdata['id']
+      );
+      $this->db->insert('pricing', $data);
+      notify('Berhasil', 'Proses penambahan paket biaya berhasil', 'success', 'fas fa-plus', 'pricing');
+    } else{
+      notify('Gagal', 'Proses penambahan paket biaya gagal dilakukan, paket sudah pernah dibuat sebelumnya', 'danger', 'fas fa-plus', 'pricing');
+    }
+  }
+
+  public function updatePricing()
+  {
+    $data = array('package' => $this->input->post('package'), 'price' => $this->input->post('price'), 'duration' => $this->input->post('duration'));
+    $this->db->where($where = array('id' => $this->input->post('id')));
+    $this->db->update('pricing', $data);
+    notify('Berhasil', 'Proses update paket biaya berhasil', 'success', 'fas fa-check', null);
+  }
+
+  public function deletePricing()
+  {
+    $this->updateData('pricing', 'id', $this->input->post('id'), 'status', 0);
+    notify('Berhasil', 'Proses hapus paket biaya berhasil', 'success', 'fas fa-trash', null);
+  }
+
+  public function recoverPricing()
+  {
+    $this->updateData('pricing', 'id', $this->input->post('id'), 'status', 1);
+    notify('Berhasil', 'Proses recover paket biaya berhasil', 'success', 'fas fa-check', null);
+
   }
 
 

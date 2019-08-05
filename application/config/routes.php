@@ -15,6 +15,8 @@ $route['webconf'] = 'admin/webconf';
 $route['category'] = 'admin/category';
 $route['classifier'] = 'admin/classifier';
 $route['account'] = 'admin/account';
+$route['pricing'] = 'admin/pricing';
+
 //ANALIST
 $route['myStock'] = 'analist/myStock';
 

@@ -21,6 +21,12 @@
           <span class="sub-item">Algoritma</span>
         </a>
       </li>
+
+      <li>
+        <a href="<?php echo base_url('pricing'); ?>">
+          <span class="sub-item">Harga</span>
+        </a>
+      </li>
     </ul>
   </div>
 </li>
