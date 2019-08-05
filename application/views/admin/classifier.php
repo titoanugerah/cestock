@@ -123,12 +123,12 @@
           <div class="row">
             <div class="col-5 col-md-3">
               <div class="nav flex-column nav-pills nav-secondary" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false">Informasi</a>
-                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Hapus</a>
+                <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home<?php echo $item->id;?>" role="tab" aria-controls="v-pills-home" aria-selected="false">Informasi</a>
+                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages<?php echo $item->id;?>" role="tab" aria-controls="v-pills-messages" aria-selected="false">Hapus</a>
               </div>
             </div>
             <div class="col-7 col-md-8">
-              <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-content" id="v-pills-tabContent<?php echo $item->id;?>">
                 <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                   <div class="modal-body">
                     <div class="form-group col-6 col-md-12">
@@ -152,7 +152,7 @@
                   </div>
 
                 </div>
-              <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+              <div class="tab-pane fade" id="v-pills-messages<?php echo $item->id;?>" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                 <div class="modal-body">
                   <p>Apakah anda yakin menghapus algoritma klasifikasi  <?php echo $item->classifier; ?>? untuk melanjutkan silahkan masukan password anda pada kolom dibawah ini</p>
                   <div class="form-group col-6 col-md-12">

@@ -58,10 +58,27 @@
                         </tr>
                         <?php $i++;endforeach; ?>
                       </tbody>
-                    </table></div></div><div class="row">
-                      <div class="col-sm-12 col-md-5"><div class="dataTables_info" id="basic-datatables_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="basic-datatables_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="basic-datatables_previous"><a href="#" aria-controls="basic-datatables" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                    </table>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-5">
+                    <div class="dataTables_info" id="basic-datatables_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+                  </div>
+                  <div class="col-sm-12 col-md-7">
+                    <div class="dataTables_paginate paging_simple_numbers" id="basic-datatables_paginate">
+                      <ul class="pagination">
+                        <li class="paginate_button page-item previous disabled" id="basic-datatables_previous">
+                          <a href="#" aria-controls="basic-datatables" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
                       </li>
-                      <li class="paginate_button page-item active"><a href="#" aria-controls="basic-datatables" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="basic-datatables" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="basic-datatables" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="basic-datatables" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="basic-datatables" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="basic-datatables" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="basic-datatables_next"><a href="#" aria-controls="basic-datatables" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
+                      <li class="paginate_button page-item active">
+                        <a href="#" aria-controls="basic-datatables" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                      </li>
+                      <li class="paginate_button page-item ">
+                        <a href="#" aria-controls="basic-datatables" data-dt-idx="2" tabindex="0" class="page-link">2</a>
+                      </li>
+                      <li class="paginate_button page-item ">
+                        <a href="#" aria-controls="basic-datatables" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="basic-datatables" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="basic-datatables" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="basic-datatables" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="basic-datatables_next"><a href="#" aria-controls="basic-datatables" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div>
                     </div>
                   </div>
                   <div class="tab-pane fade" id="tab3" role="tabpanel" >
@@ -150,14 +167,14 @@
                 <div class="row">
                   <div class="col-5 col-md-3">
                     <div class="nav flex-column nav-pills nav-secondary" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                      <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false">Informasi</a>
-                      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Model</a>
-                      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Hapus</a>
+                      <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home<?php echo $item->id;?>" role="tab" aria-controls="v-pills-home" aria-selected="false">Informasi</a>
+                      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile<?php echo $item->id;?>" role="tab" aria-controls="v-pills-profile" aria-selected="true">Model</a>
+                      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages<?php echo $item->id;?>" role="tab" aria-controls="v-pills-messages" aria-selected="false">Hapus</a>
                     </div>
                   </div>
                   <div class="col-7 col-md-8">
                     <div class="tab-content" id="v-pills-tabContent">
-                      <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                      <div class="tab-pane fade active show" id="v-pills-home<?php echo $item->id;?>" role="tabpanel" aria-labelledby="v-pills-home-tab">
                         <div class="modal-body">
                           <div class="row">
                             <div class="form-group col-6 col-md-8">
@@ -194,7 +211,7 @@
                         </div>
 
                       </div>
-                      <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                      <div class="tab-pane fade " id="v-pills-profile<?php echo $item->id;?>" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                         <div class="modal-body">
                           <h5><b><?php foreach ($classifier as $flow) {if($flow->id!=$item->id_classifier){continue;} echo $flow->classifier;} ?></b></h5>
                           <p><?php  foreach ($classifier as $flow) {if($flow->id!=$item->id_classifier){continue;} echo $flow->description;}  ?></p>
@@ -204,7 +221,7 @@
                         </div>
                       </p>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    <div class="tab-pane fade" id="v-pills-messages<?php echo $item->id;?>" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                       <div class="modal-body">
                         <p>Apakah anda yakin menghapus saham <?php echo $item->stock_name; ?>? untuk melanjutkan silahkan masukan password anda pada kolom dibawah ini</p>
                         <div class="form-group col-6 col-md-12">
