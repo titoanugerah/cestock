@@ -275,7 +275,6 @@ class Admin_model extends CI_Model
   {
     $this->updateData('pricing', 'id', $this->input->post('id'), 'status', 1);
     notify('Berhasil', 'Proses recover paket biaya berhasil', 'success', 'fas fa-check', null);
-
   }
 
 

@@ -144,6 +144,7 @@
 									</li>
 									<li>
 										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="<?php echo base_url('goPremium'); ?>">Beralih ke Premium</a>
 										<a class="dropdown-item" href="<?php echo base_url('profile'); ?>">Profil Saya</a>
 										<a class="dropdown-item" href="<?php echo base_url('inbox'); ?>" hidden>Pesan</a>
 										<a class="dropdown-item" href="<?php echo base_url('logout'); ?>">Keluar</a>
@@ -249,7 +250,7 @@
 			});
 		</script>
 
-		
+
 
 	</body>
 	</html>
