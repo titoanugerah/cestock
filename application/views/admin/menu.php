@@ -37,3 +37,10 @@
     <p>Akun</p>
   </a>
 </li>
+
+<li class="nav-item  <?php if($view_name=='paymentList'){echo 'active';} ?>">
+  <a href="<?php echo base_url('paymentList') ?>">
+    <i class="fas fa-users"></i>
+    <p>Pembayaran</p>
+  </a>
+</li>

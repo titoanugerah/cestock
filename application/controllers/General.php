@@ -58,6 +58,11 @@ class General extends CI_Controller
     elseif($this->input->post('recoverAccount')){$this->admin_model->recoverAccount();}
     $this->load->view('template', $this->general_model->cDetailAccount($id));
   }
+
+  public function viewInvoice($id)
+  {
+    echo $id;
+  }
 }
 
 

@@ -113,7 +113,7 @@ class User_model extends CI_Model
      );
      $this->db->insert('payment', $data);
      $this->updateData('payment', 'id', $this->db->insert_id(), 'token', 'payment_'.$this->db->insert_id().$this->uploadFile('payment_'.$this->db->insert_id(),'jpg|jpeg|png')['ext']);
-     notify('Sukses', 'Pembayaran berhasil dibuat, silahkan tunggu konfirmasi dari admin', 'success', 'fas fa-check', 'goPremium');
+     notify('Sukses', 'Pembayaran berhasil dibuat, silahkan tunggu konfirmasi dari admin', 'success', 'fas fa-check', 'payment');
   }
 
   public function cPayment()

@@ -284,6 +284,15 @@ class Admin_model extends CI_Model
     notify('Berhasil', 'Proses update rekening bank berhasil', 'success', 'fas fa-money-bill-wave', null);
   }
 
+  public function cPaymentList()
+  {
+    $data['payment'] = $this->getAllData('view_payment');
+    $data['view_name'] = 'paymentList';
+    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+    return $data;
+
+  }
+
 }
 
 

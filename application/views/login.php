@@ -26,6 +26,9 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('./assets/template/login/'); ?>css/util.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('./assets/template/login/'); ?>css/main.css">
   <!--===============================================================================================-->
+<script src="https://kit.fontawesome.com/c8846487e1.js"></script>
+
+
 </head>
 <body>
 

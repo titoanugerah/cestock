@@ -9,6 +9,7 @@ $route['logout'] = 'general/logout';
 $route['createUser'] = 'general/createUser';
 $route['profile'] = 'general/profile';
 $route['detailAccount/(:any)'] = 'general/detailAccount/$1';
+$route['viewInvoice/(:any)'] = 'general/viewInvoice/$1';
 
 //ADMIN
 $route['webconf'] = 'admin/webconf';
@@ -16,6 +17,7 @@ $route['category'] = 'admin/category';
 $route['classifier'] = 'admin/classifier';
 $route['account'] = 'admin/account';
 $route['pricing'] = 'admin/pricing';
+$route['paymentList'] = 'admin/paymentList';
 
 //ANALIST
 $route['myStock'] = 'analist/myStock';
