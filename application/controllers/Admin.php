@@ -57,6 +57,9 @@ class Admin extends CI_Controller
 
   public function paymentList()
   {
+    if ($this->input->post('verify')) {$this->admin_model->verify();}
+    elseif ($this->input->post('unverify')) {$this->admin_model->unverify();}
+
     $this->load->view('template',$this->admin_model->cPaymentList());
 
   }

@@ -48,6 +48,7 @@ class General_model extends CI_Model
   public function getSession($id)
   {
     $account = $this->getDataRow('account', 'id', $id);
+    $premium = $this->getDataRow('view_premium', 'id', $id);
     $session = array(
       'login' => true,
       'id' => $account->id,
@@ -60,7 +61,8 @@ class General_model extends CI_Model
       'role' => $account->role,
       'id_pic' => $account->id_pic,
       'date_created' => $account->date_created,
-      'type' => $account->type
+      'type' => $account->type,
+      'exp' => $premium->deadline
       );
       return $session;
     }

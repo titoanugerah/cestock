@@ -290,8 +290,22 @@ class Admin_model extends CI_Model
     $data['view_name'] = 'paymentList';
     $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
     return $data;
-
   }
+
+  public function verify()
+  {
+    $this->updateData('payment', 'id', $this->input->post('id'), 'status', 2);
+    $this->updateData('payment', 'id', $this->input->post('id'), 'pic', $this->session->userdata['id']);
+    notify('Berhasil', 'Proses verifikasi pembayaran berhasil dilakukan', 'success', 'fas fa-money-bill-wave', null);
+  }
+
+  public function unverify()
+  {
+    $this->updateData('payment', 'id', $this->input->post('id'), 'status', 1);
+    $this->updateData('payment', 'id', $this->input->post('id'), 'pic', $this->session->userdata['id']);
+    notify('Berhasil', 'Proses verifikasi pembayaran berhasil ditolak', 'success', 'fas fa-money-bill-wave', null);
+  }
+
 
 }
 
