@@ -15,6 +15,8 @@ class Admin extends CI_Controller
     if ($this->input->post('updateInfo')) {$this->admin_model->updateInfo();}
     else if ($this->input->post('updateEmail')) {$this->admin_model->updateInfo();}
     else if ($this->input->post('uploadWeka')) {$this->admin_model->uploadWeka();}
+    else if ($this->input->post('updatePaymentMethod')) {$this->admin_model->updatePaymentMethod();}
+
     $this->load->view('template',$this->admin_model->cWebconf());
   }
 

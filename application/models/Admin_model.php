@@ -20,7 +20,6 @@ class Admin_model extends CI_Model
     return $this->db->get_where($table, $where = array($whereVar => $whereVal))->num_rows();
   }
 
-
   public function getAllData($table)
   {
     return $this->db->get($table)->result();
@@ -277,6 +276,13 @@ class Admin_model extends CI_Model
     notify('Berhasil', 'Proses recover paket biaya berhasil', 'success', 'fas fa-check', null);
   }
 
+  public function updatePaymentMethod()
+  {
+    $this->updateData('webconf', 'id', 1, 'bank_account', $this->input->post('bank_account'));
+    $this->updateData('webconf', 'id', 1, 'bank_account_number', $this->input->post('bank_account_number'));
+    $this->updateData('webconf', 'id', 1, 'bank_account_owner', $this->input->post('bank_account_owner'));
+    notify('Berhasil', 'Proses update rekening bank berhasil', 'success', 'fas fa-money-bill-wave', null);
+  }
 
 }
 

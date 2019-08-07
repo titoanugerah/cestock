@@ -1,0 +1,100 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+/**
+ *
+ */
+class User_model extends CI_Model
+{
+
+  function __construct()
+  {
+
+  }
+
+  //CORE
+  public function getDataRow($table, $whereVar, $whereVal)
+  {
+    return $this->db->get_where($table, $where = array($whereVar => $whereVal))->row();
+  }
+
+  public function getNumRow($table, $whereVar, $whereVal)
+  {
+    return $this->db->get_where($table, $where = array($whereVar => $whereVal))->num_rows();
+  }
+
+  public function getAllData($table)
+  {
+    return $this->db->get($table)->result();
+  }
+
+  public function updateData($table, $whereVar, $whereVal, $setVar, $setVal)
+  {
+    $this->db->where($where = array($whereVar => $whereVal));
+    return $this->db->update($table, $data = array($setVar=> $setVal));
+  }
+
+
+  public function uploadFile($filename,$allowedFile)
+  {
+    $config['upload_path'] = APPPATH.'../assets/upload/';
+    $config['overwrite'] = TRUE;
+    $config['file_name']     =  str_replace(' ','_',$filename);
+    $config['allowed_types'] = $allowedFile;
+    $this->load->library('upload', $config);
+    if (!$this->upload->do_upload('fileUpload')) {
+      $upload['status']=0;
+      $upload['message']= "Mohon maaf terjadi error saat proses upload : ".$this->upload->display_errors();
+    } else {
+      $upload['status']=1;
+      $upload['message'] = "File berhasil di upload";
+      $upload['ext'] = $this->upload->data('file_ext');
+    }
+    $this->session->set_flashdata('message', $upload['message']);
+    return $upload;
+  }
+
+  public function sentEmail($to, $fullname, $subject, $content)
+  {
+    $account = $this->getDataRow('webconf', 'id', 1);
+    $config = [
+    'protocol' => 'sentmail',
+    'smtp_host' => $account->host,
+    'smtp_user' => $account->email,
+    'smtp_pass' => $account->password,
+    'smtp_crypto' => $account->crypto,
+    'charset' => 'utf-8',
+    'crlf' => 'rn',
+    'newline' => "\r\n",
+    'smtp_port' => $account->port
+    ];
+    $this->load->library('email', $config);
+    $this->email->from($account->email);
+    $this->email->to($to);
+    $this->email->subject($subject);
+    $this->email->message('
+    Yth. '.$fullname.'
+    Di tempat.
+
+    '.$content.'
+
+    Atas perhatiannya kami ucapkan terima kasih.
+
+    Admin
+    ');
+    $sent = $this->email->send();
+    error_reporting(0);
+  }
+
+  //APPLICATION
+  public function cGoPremium()
+  {
+    $data['pricing'] = $this->getAllData('pricing');
+    $data['view_name'] = 'goPremium';
+    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+    return $data;
+  }
+
+}
+
+
+ ?>
