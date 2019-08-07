@@ -23,6 +23,8 @@ $route['myStock'] = 'analist/myStock';
 
 //USER AREA
 $route['goPremium'] = 'user/goPremium';
+$route['payment'] = 'user/payment';
+
 //SYSTEM AREA
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';

@@ -15,6 +15,11 @@ class User extends CI_Controller
     if ($this->input->post('createPayment')) {$this->user_model->createPayment();}
     $this->load->view('template', $this->user_model->cGoPremium());
   }
+
+  public function payment()
+  {
+    $this->load->view('template', $this->user_model->cPayment());
+  }
 }
 
 

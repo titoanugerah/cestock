@@ -22,6 +22,12 @@ class User_model extends CI_Model
     return $this->db->get_where($table, $where = array($whereVar => $whereVal))->num_rows();
   }
 
+  public function getSomeData($table, $whereVar, $whereVal)
+  {
+    return $this->db->get_where($table, $where = array($whereVar => $whereVal))->result();
+  }
+
+
   public function getAllData($table)
   {
     return $this->db->get($table)->result();
@@ -32,6 +38,8 @@ class User_model extends CI_Model
     $this->db->where($where = array($whereVar => $whereVal));
     return $this->db->update($table, $data = array($setVar=> $setVal));
   }
+
+
 
 
   public function uploadFile($filename,$allowedFile)
@@ -106,6 +114,15 @@ class User_model extends CI_Model
      $this->db->insert('payment', $data);
      $this->updateData('payment', 'id', $this->db->insert_id(), 'token', 'payment_'.$this->db->insert_id().$this->uploadFile('payment_'.$this->db->insert_id(),'jpg|jpeg|png')['ext']);
      notify('Sukses', 'Pembayaran berhasil dibuat, silahkan tunggu konfirmasi dari admin', 'success', 'fas fa-check', 'goPremium');
+  }
+
+  public function cPayment()
+  {
+    $data['payment'] = $this->getSomeData('view_payment', 'id_user', $this->session->userdata['id']);
+    $data['view_name'] = 'payment';
+    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+    return $data;
+
   }
 
 }
