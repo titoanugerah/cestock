@@ -94,6 +94,20 @@ class User_model extends CI_Model
     return $data;
   }
 
+  public function createPayment()
+  {
+    $data = array(
+      'id_user' => $this->session->userdata['id'],
+      'package_id' => $this->input->post('id'),
+      'price' => preg_replace('/\D/', '', $this->input->post('price')),
+      'status' => 0,
+      'duration' => $this->input->post('duration')
+     );
+     $this->db->insert('payment', $data);
+     $this->updateData('payment', 'id', $this->db->insert_id(), 'token', 'payment_'.$this->db->insert_id().$this->uploadFile('payment_'.$this->db->insert_id(),'jpg|jpeg|png')['ext']);
+     notify('Sukses', 'Pembayaran berhasil dibuat, silahkan tunggu konfirmasi dari admin', 'success', 'fas fa-check', 'goPremium');
+  }
+
 }
 
 

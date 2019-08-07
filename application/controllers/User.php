@@ -12,7 +12,7 @@ class User extends CI_Controller
 
   public function goPremium()
   {
-
+    if ($this->input->post('createPayment')) {$this->user_model->createPayment();}
     $this->load->view('template', $this->user_model->cGoPremium());
   }
 }

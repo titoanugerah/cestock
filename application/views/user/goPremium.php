@@ -67,6 +67,9 @@
                 <div class="form-group col-6 col-md-6">
                   <label>Biaya Transfer</label>
                   <input type="text" class="form-control" name="price" value="Rp. <?php echo number_format(($key->price+rand(40,100)), 0,',','.'); ?>" required>
+                  <input type="text" class="form-control" name="id" value="<?php echo $key->id; ?>" hidden>
+                  <input type="text" class="form-control" name="duration" value="<?php echo $key->duration; ?>" hidden>
+
                 </div>
 
               </div>
