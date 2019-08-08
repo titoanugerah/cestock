@@ -118,6 +118,18 @@ class General_model extends CI_Model
       return $upload;
     }
 
+    public function getStock($stock)
+    {
+      $url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=".$stock."&interval=5min&apikey=QT2PLXB57HD123EU&datatype=csv";
+      $data['csv'] = explode("\n",file_get_contents($url));
+      for ($i=0; $i < (count($data['csv'])-1); $i++) {
+        $data['row'][$i] = explode(",",$data['csv'][$i]);
+        $data['count'] = $i;
+      }
+      return $data;
+    }
+
+
     //APPLICATION
     public function cLogin()
     {
@@ -184,6 +196,11 @@ class General_model extends CI_Model
 
     public function cDashboard()
     {
+
+      $data['stock'] = $this->getAllData('stock');
+      $data['stockCount'] = $this->db->get('stock')->num_rows();
+      $data['stockSymbol'] = $this->db->query('select * from stock order by rand() asc limit 0,'.$data['stockCount'])->result();
+      $i = 0;foreach ($data['stockSymbol'] as $item) {$data['chart']['chartData'.$i] = $this->getStock($item->stock_code);$i++;}
       $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
       $data['view_name'] = 'dashboard';
       return $data;
