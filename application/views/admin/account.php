@@ -43,23 +43,26 @@
 
   </div>
   <div class="tab-pane fade" id="tab2" role="tabpanel" >
-    <?php foreach ($account as $item): if($item->role!='user'){continue;} ?>
-      <div class="col-sm-6 col-lg-3">
-        <div class="card">
-          <div class="p-2">
-            <img class="card-img-top rounded" src="<?php echo base_url('assets/upload/'.$item->display_picture); ?>" alt="Product 1">
-          </div>
-          <div class="card-body pt-2">
-            <h4 class="mb-1 fw-bold"><?php echo $item->fullname; ?></h4>
-            <p class="text-muted small mb-2">@<?php echo $item->username; ?></p>
-            <br>
-            <center>
-              <a href="<?php echo base_url('detailAccount/'.$item->id) ?>" class="btn btn-secondary btn-round">Detail Akun</a>
-            </center>
+    <div class="row">
+
+      <?php foreach ($account as $item): if($item->role!='user'){continue;} ?>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card">
+            <div class="p-2">
+              <img class="card-img-top rounded" src="<?php echo base_url('assets/upload/'.$item->display_picture); ?>" alt="Product 1">
+            </div>
+            <div class="card-body pt-2">
+              <h4 class="mb-1 fw-bold"><?php echo $item->fullname; ?></h4>
+              <p class="text-muted small mb-2">@<?php echo $item->username; ?></p>
+              <br>
+              <center>
+                <a href="<?php echo base_url('detailAccount/'.$item->id) ?>" class="btn btn-secondary btn-round">Detail Akun</a>
+              </center>
+            </div>
           </div>
         </div>
-      </div>
-    <?php endforeach; ?>
+      <?php endforeach; ?>
+    </div>
   </div>
 </div>
 
