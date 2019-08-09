@@ -12,7 +12,6 @@ $route['detailAccount/(:any)'] = 'general/detailAccount/$1';
 $route['viewInvoice/(:any)'] = 'general/viewInvoice/$1';
 $route['detailStock/(:any)'] = 'general/detailStock/$1';
 
-
 //ADMIN
 $route['webconf'] = 'admin/webconf';
 $route['category'] = 'admin/category';
@@ -29,6 +28,8 @@ $route['myStock'] = 'analist/myStock';
 $route['goPremium'] = 'user/goPremium';
 $route['payment'] = 'user/payment';
 $route['stockList'] = 'user/stockList';
+$route['misqueen'] = 'user/misqueen';
+
 
 //SYSTEM AREA
 $route['default_controller'] = 'welcome';

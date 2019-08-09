@@ -40,7 +40,7 @@
 
 <li class="nav-item  <?php if($view_name=='paymentList'){echo 'active';} ?>">
   <a href="<?php echo base_url('paymentList') ?>">
-    <i class="fas fa-users"></i>
+    <i class="fas fa-money-bill-alt"></i>
     <p>Pembayaran</p>
   </a>
 </li>

@@ -133,6 +133,12 @@ class User_model extends CI_Model
     return $data;
   }
 
+  public function cMisqueen()
+  {
+    $data['view_name'] = 'misqueen';
+    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+    return $data;
+  }
 }
 
 

@@ -314,7 +314,7 @@ class General_model extends CI_Model
     } elseif($this->getNumRow2('subscription','id_user',$this->session->userdata['id'],'id_stock', $id)==1) {
       notify('Gagal', 'Anda gagal berlangganan '.$this->getDataRow('stock', 'id', $id)->stock_name.' anda sudah berlangganan sebelumnya', 'danger', 'fas fa-check', 'detailStock/'.$id);
     } else {
-      notify('Gagal', 'Anda gagal berlangganan '.$this->getDataRow('stock', 'id', $id)->stock_name.' anda silahkan beli paket terlebih dahulu', 'danger', 'fas fa-check', 'goPremium');
+      notify('Gagal', 'Anda gagal berlangganan '.$this->getDataRow('stock', 'id', $id)->stock_name.' anda silahkan beli paket terlebih dahulu', 'danger', 'fas fa-check', 'misqueen');
     }
   }
 

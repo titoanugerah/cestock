@@ -26,6 +26,11 @@ class User extends CI_Controller
     $this->load->view('template', $this->user_model->cStockList());
 
   }
+
+  public function misqueen()
+  {
+    $this->load->view('template', $this->user_model->cMisqueen());
+  }
 }
 
 

@@ -43,7 +43,7 @@
 			<!-- Navbar Header -->
 			<nav class="navbar navbar-header navbar-expand-lg" data-background-color="<?php echo $webconf->background_color; ?>">
 				<div class="container-fluid">
-					<div class="collapse" id="search-nav">
+				<div class="collapse" id="search-nav" style="margin-left:-30px;">
 						<form class="navbar-left navbar-form nav-search mr-md-3" method="post">
 							<div class="input-group">
 								<div class="input-group-prepend">
@@ -62,7 +62,7 @@
 							</a>
 						</li>
 						<li class="nav-item dropdown hidden-caret" <?php if(!$this->session->userdata['login']){echo 'hidden';} ?>>
-							<a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" hidden>
 								<i class="fa fa-envelope"></i>
 							</a>
 							<ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
@@ -145,9 +145,9 @@
 									<li>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="<?php echo base_url('goPremium'); ?>" <?php if($this->session->userdata['role']!='user' || $this->session->userdata['exp']>0){echo "hidden";} ?>>Beralih ke Premium</a>
-										<a class="dropdown-item" href="<?php echo base_url('profile'); ?>">Profil Saya</a>
+										<a class="dropdown-item" href="<?php echo base_url('profile'); ?>"> <i class="fas fa-user"></i> Profil Saya</a>
 										<a class="dropdown-item" href="<?php echo base_url('inbox'); ?>" hidden>Pesan</a>
-										<a class="dropdown-item" href="<?php echo base_url('logout'); ?>">Keluar</a>
+										<a class="dropdown-item" href="<?php echo base_url('logout'); ?>" <i class="fas fa-money-bill-alt"></i>>Keluar</a>
 									</li>
 								</div>
 							</ul>
@@ -234,13 +234,13 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 
 	<script type="text/javascript">
-		//Notify
+		//PASCE LIAT INI
 		<?php if($this->session->userdata['notify']){
 			echo "$.notify({icon: '".$this->session->userdata['icon']."',
 			title: '".$this->session->userdata['title']."',
 			message: '".$this->session->userdata['message']."',},{
 				type: '".$this->session->userdata['type']."',
-				placement : { from: 'bottom', align: 'right'}, time: 1000 });";
+				placement : { from: 'top', align: 'center'}, time: 1000 });";
 			} ?>
 		</script>
 
