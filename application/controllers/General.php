@@ -66,9 +66,9 @@ class General extends CI_Controller
 
   public function detailStock($id)
   {
-    if ($this->input->post('suscribe')) {$this->general_model->suscribe($id);}
-    elseif ($this->input->post('unsuscribe')) {$this->general_model->unsuscribe($id);}
-
+     if ($this->input->post('suscribe')) {$this->general_model->suscribe($id);}
+     elseif ($this->input->post('unsuscribe')) {$this->general_model->unsuscribe($id);}
+     elseif ($this->input->post('invest')) {$this->general_model->invest($id);}
     $this->load->view('template', $this->general_model->cDetailStock($id));
   }
 }

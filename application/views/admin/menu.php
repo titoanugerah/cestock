@@ -1,3 +1,9 @@
+<li class="nav-item  <?php if($view_name=='dashboard'){echo 'active';} ?>">
+  <a href="<?php echo base_url('dashboard') ?>">
+    <i class="fas fa-money-bill-alt"></i>
+    <p>Dashboard</p>
+  </a>
+</li>
 <li class="nav-item <?php if($view_name=='webconf' || $view_name=='category' || $view_name=='classifier'){echo 'active';} ?>">
   <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
     <i class="fas fa-home"></i>

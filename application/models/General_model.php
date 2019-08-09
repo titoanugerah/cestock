@@ -18,6 +18,11 @@ class General_model extends CI_Model
     return $this->db->get_where($table, $where = array($whereVar => $whereVal))->row();
   }
 
+  public function getDataRow2($table, $whereVar1, $whereVal1, $whereVar2, $whereVal2)
+  {
+    return $this->db->get_where($table, $where = array($whereVar1 => $whereVal1,$whereVar2 => $whereVal2))->row();
+  }
+
   public function getNumRow($table, $whereVar1, $whereVal1)
   {
     return $this->db->get_where($table, $where = array($whereVar1 => $whereVal1))->num_rows();
@@ -299,9 +304,11 @@ class General_model extends CI_Model
     $this->updateData('stock','stock_code', $data['detail']->stock_code, 'prediction_1', prediction($data['detail']->stock_code, $data['classifier']->classifier_code));
     $data['suscribeStatus'] = $this->getNumRow2('subscription', 'id_user', $this->session->userdata['id'], 'id_stock', $id);
     $data['classifier'] = $this->getDataRow('classifier', 'id', $data['detail']->id_classifier);
-
     $data['analist'] = $this->getDataRow('account', 'id', $data['detail']->id_analist);
     $data['stock'] = $this->getStock($data['detail']->stock_code);
+    $data['currentPrice'] = $data['stock']['row'][1][4];
+    $data['previousPrice'] = $this->getDataRow('subscription', 'id', $id)->price;
+    $data['investValue'] = (int)(($data['currentPrice'] - $data['previousPrice'])* $this->getDataRow('subscription', 'id', $id)->invest);
     $data['view_name'] = 'detailStock';
     $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
     return $data;
@@ -323,6 +330,16 @@ class General_model extends CI_Model
   {
     $this->db->delete('subscription', array('id_stock' => $id, 'id_user' => $this->session->userdata['id']));
     notify('Sukses', 'Anda berhasil tidak berlangganan '.$this->getDataRow('stock', 'id', $id)->stock_name, 'success', 'fas fa-trash', 'detailStock/'.$id);
+  }
+
+  public function invest($id)
+  {
+//    var_dump($this->getStock($this->getDataRow('stock', 'id', $id)->stock_code)['row'][1][4]);die;
+    $identity = $this->getDataRow2('subscription', 'id_user', $this->session->userdata['id'], 'id_stock', $id);
+//    var_dump($id);die;
+   $this->updateData('subscription', 'id', $identity->id, 'invest', $this->input->post('amount'));
+   $this->updateData('subscription', 'id', $identity->id, 'date_invest', date('Y-m-d H:i:s'));
+   $this->updateData('subscription', 'id', $identity->id, 'price', $this->getStock($this->getDataRow('stock', 'id', $id)->stock_code)['row'][1][4]);
 
   }
 }

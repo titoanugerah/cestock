@@ -48,7 +48,7 @@
           Prediksi
         </div>
         <div class="card-body">
-          Berdasarkan prediksi oleh analist <?php echo $analist->fullname; ?> menggunakan klasifikasi/algoritma <?php echo $classifier->classifier; ?> untuk 1 jam kedepan disarankan untuk <?php echo $detail->prediction_1; ?>
+          Berdasarkan prediksi oleh analist <?php echo $analist->fullname; ?> menggunakan klasifikasi/algoritma <?php echo $classifier->classifier; ?> untuk 1 jam kedepan disarankan untuk <?php echo $detail->prediction_1; ?>. <?php {echo 'Apabila anda menjual saham anda maka keuntungannya adalah Rp.'.$investValue;} ?>
         </div>
       </div>
       <div class="card">
@@ -85,6 +85,31 @@
   </div>
 
 
+  <div class="modal fade" id="proficulator" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <center>
+            <h4>Analisa Keuntungan</h4>
+          </center>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <form role="form" method="post">
+          <div class="modal-body">
+            <div class="form-group col-6 col-md-12">
+              <label>Jumlah investasi (RP)</label>
+              <input type="text" class="form-control" placeholder="Masukan jumlah uang yang diinvestasikan" name="amount" required>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" name="invest" value="invest">Simpan</button>
+          <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
 
   <?php $i=0; foreach ($stockSymbol as $item1):  ?>
     <script type="text/javascript">

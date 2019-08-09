@@ -8,9 +8,9 @@
       </div>
       <div class="ml-md-auto py-2 py-md-0">
         <form  method="post">
-          <button type="submit" class="btn btn-success btn-round" name="suscribe" value="suscribe" <?php if($suscribeStatus==1){echo 'hidden';} ?>>Suscribe</button> &nbsp;
-          <button type="submit" class="btn btn-danger btn-round" name="unsuscribe" value="unsuscribe" <?php if($suscribeStatus==0){echo 'hidden';} ?>>unsuscribe</button> &nbsp;
-          <button type="button" data-toggle="modal" data-target="#proficulator" class="btn btn-info btn-round">Analisa Keuntungan</button>
+          <button type="submit" class="btn btn-success btn-round" name="suscribe" value="suscribe" <?php if($suscribeStatus==1 || $this->session->userdata['role']!='user'){echo 'hidden';} ?>>Suscribe</button> &nbsp;
+          <button type="submit" class="btn btn-danger btn-round" name="unsuscribe" value="unsuscribe" <?php if($suscribeStatus==0 || $this->session->userdata['role']!='user'){echo 'hidden';} ?>>unsuscribe</button> &nbsp;
+          <button type="button" data-toggle="modal" data-target="#proficulator" class="btn btn-info btn-round" <?php if($suscribeStatus==0 || $this->session->userdata['role']!='user'){echo 'hidden';} ?>>Analisa Keuntungan</button>
         </form>
       </div>
     </div>
@@ -48,7 +48,7 @@
           Prediksi
         </div>
         <div class="card-body">
-          Berdasarkan prediksi oleh analist <?php echo $analist->fullname; ?> menggunakan klasifikasi/algoritma <?php echo $classifier->classifier; ?> untuk 1 jam kedepan disarankan untuk <?php echo $detail->prediction_1; ?>
+          Berdasarkan prediksi oleh analist <?php echo $analist->fullname; ?> menggunakan klasifikasi/algoritma <?php echo $classifier->classifier; ?> untuk 1 jam kedepan disarankan untuk <?php echo $detail->prediction_1; ?>. <?php if($previousPrice!=null){echo 'Apabila anda menjual saham anda maka keuntungannya adalah Rp.'.$investValue;} ?>
         </div>
       </div>
       <div class="card">
@@ -95,22 +95,21 @@
           </center>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        <form role="form" method="post" enctype="multipart/form-data">
+        <form role="form" method="post">
           <div class="modal-body">
             <div class="form-group col-6 col-md-12">
               <label>Jumlah investasi (RP)</label>
-              <input type="text" class="form-control" placeholder="Masukan jumlah uang yang diinvestasikan" name="amount" required>
+              <input type="text" class="form-control" placeholder="Masukan jumlah uang yang diinvestasikan" name="amount" value="<?php echo $invest; ?>" required>
             </div>
           </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" name="proficulator" value="proficulator">Tambah </button>
+          <button type="submit" class="btn btn-primary" name="invest" value="invest">Simpan</button>
           <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
         </div>
       </form>
     </div>
   </div>
   </div>
-
 
   <?php $i=0; foreach ($stockSymbol as $item1):  ?>
     <script type="text/javascript">
