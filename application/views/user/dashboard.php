@@ -96,6 +96,10 @@
 
     <?php $i=0; foreach ($stockSymbol as $item1):  ?>
       <script type="text/javascript">
+      Highcharts.setOptions({
+          colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
+      });
+
         Highcharts.chart('container<?php echo $i;?>', {
           title: {text: '<?php echo $item1->stock_code; ?>'},
           xAxis: {categories: [<?php foreach ($chart['chartData'.$i]['row'] as $item) {echo "'".date('Y-m-d H:i:s', strtotime($item[0]))."',"; } ?>]},
