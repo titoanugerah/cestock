@@ -125,6 +125,14 @@ class User_model extends CI_Model
 
   }
 
+  public function cStockList()
+  {
+    $data['stock'] = $this->db->query('select a.* from  stock as a, subscription as b where a.id = b.id_stock and b.id_user = '.$this->session->userdata['id'])->result();
+    $data['view_name'] = 'stockList';
+    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+    return $data;
+  }
+
 }
 
 

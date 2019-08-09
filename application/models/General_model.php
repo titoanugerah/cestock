@@ -9,7 +9,7 @@ class General_model extends CI_Model
 
   function __construct()
   {
-
+    $this->load->library('Excel');
   }
 
   //CORE
@@ -45,6 +45,37 @@ class General_model extends CI_Model
   }
 
   //FUNCTIONAL
+
+  public function getStockData($stock)
+  {
+    $objPHPExcel = new PHPExcel();
+    $x=1; $class = array('BUY', 'HOLD', 'SELL');
+    $data = $this->getStock($stock);
+    $dtest = array();$dtest[0] = ('High,Low,Close,Volume,PP,R1,R2,R3,S1,S2,S3,CLASS');
+    for ($i=2; $i < $data['count']; $i++) {
+      $date = $data['row'][$i][0];
+      $open = floatval(number_format($data['row'][$i][1],2));
+      $high = floatval(number_format($data['row'][$i][2],2));
+      $low = floatval(number_format($data['row'][$i][3],2));
+      $close = floatval(number_format($data['row'][$i][4],2));
+      $volume = ((int)$data['row'][$i][5]);
+      $PP = ($high + $low + $close)/3;
+      $R1 = (2*$PP) - $low;
+      $R2 = $PP+($high-$low);
+      $R3 = $high + (2*($PP-$low));
+      $S1 = (2*$PP) - $high;
+      $S2 = $PP - ($high - $low);
+      $S3 = $low - (2*($high - $PP));
+      $dtest[$x] = ($high.','.$low.','.$close.','.$volume.','.$PP.','.$R1.','.$R2.','.$R3.','.$S1.','.$S2.','.$S3.','.$class[rand(0,2)]);
+      $x++;
+    }
+    // $fp = fopen('assets/upload/balance_csv.csv', 'w');
+    $fp = fopen('balance_csv.csv', 'w');
+    foreach($dtest as $line){$val = explode(",",$line);fputcsv($fp, $val);}
+    fclose($fp);//end
+    return true;
+  }
+
   public function getSession($id)
   {
     $account = $this->getDataRow('account', 'id', $id);
@@ -260,12 +291,15 @@ class General_model extends CI_Model
   public function cDetailStock($id)
   {
     $data['stockSymbol'] = $this->db->query('select * from stock where id = '.$id)->result();
-    $i = 0;foreach ($data['stockSymbol'] as $item) {$data['chart']['chartData'.$i] = $this->getStock($item->stock_code);$i++;}
-
-    $data['suscribeStatus'] = $this->getNumRow2('subscription', 'id_user', $this->session->userdata['id'], 'id_stock', $id);
-    $data['detail'] = $this->getDataRow('stock', 'id', $id);
-    $data['analist'] = $this->getDataRow('account', 'id', $data['detail']->id_analist);
     $data['classifier'] = $this->getDataRow('classifier', 'id', $data['detail']->id_classifier);
+    $data['detail'] = $this->getDataRow('stock', 'id', $id);
+    $i = 0;foreach ($data['stockSymbol'] as $item) {$data['chart']['chartData'.$i] = $this->getStock($item->stock_code);$i++;}
+    $this->getStockData($data['detail']->stock_code);
+    $this->updateData('stock','id', $id, 'prediction_1', prediction($data['detail']->stock_code, $data['classifier']->classifier_code));
+    $data['suscribeStatus'] = $this->getNumRow2('subscription', 'id_user', $this->session->userdata['id'], 'id_stock', $id);
+    $data['classifier'] = $this->getDataRow('classifier', 'id', $data['detail']->id_classifier);
+
+    $data['analist'] = $this->getDataRow('account', 'id', $data['detail']->id_analist);
     $data['stock'] = $this->getStock($data['detail']->stock_code);
     $data['view_name'] = 'detailStock';
     $data['webconf'] = $this->getDataRow('webconf', 'id', 1);

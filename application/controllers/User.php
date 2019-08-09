@@ -20,6 +20,12 @@ class User extends CI_Controller
   {
     $this->load->view('template', $this->user_model->cPayment());
   }
+
+  public function stockList()
+  {
+    $this->load->view('template', $this->user_model->cStockList());
+
+  }
 }
 
 
