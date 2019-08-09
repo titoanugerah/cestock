@@ -56,7 +56,7 @@
         </div>
       </div>
     </div>
-
+  </div>
 
     <div class="modal fade" id="createStock" role="dialog">
       <div class="modal-dialog">
