@@ -58,7 +58,6 @@
           </center>
           <input type="file" name="fileUpload" class="btn btn-primary" required>
         </div>
-
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary" name="createCategory" value="createCategory">Tambah Kategori</button>

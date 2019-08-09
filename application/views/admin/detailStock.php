@@ -10,7 +10,7 @@
         <form  method="post">
           <button type="submit" class="btn btn-success btn-round" name="suscribe" value="suscribe" <?php if($suscribeStatus==1){echo 'hidden';} ?>>Suscribe</button> &nbsp;
           <button type="submit" class="btn btn-danger btn-round" name="unsuscribe" value="unsuscribe" <?php if($suscribeStatus==0){echo 'hidden';} ?>>unsuscribe</button> &nbsp;
-
+          <button type="button" data-toggle="modal" data-target="#proficulator" class="btn btn-info btn-round">Analisa Keuntungan</button>
         </form>
       </div>
     </div>
@@ -84,6 +84,32 @@
 
   </div>
 
+
+  <div class="modal fade" id="proficulator" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <center>
+            <h4>Analisa Keuntungan</h4>
+          </center>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <form role="form" method="post" enctype="multipart/form-data">
+          <div class="modal-body">
+            <div class="form-group col-6 col-md-12">
+              <label>Jumlah investasi (RP)</label>
+              <input type="text" class="form-control" placeholder="Masukan jumlah uang yang diinvestasikan" name="amount" required>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" name="proficulator" value="proficulator">Tambah </button>
+          <button type="button" class="btn btn-grey" data-dismiss="modal">Kembali</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
 
 
   <?php $i=0; foreach ($stockSymbol as $item1):  ?>

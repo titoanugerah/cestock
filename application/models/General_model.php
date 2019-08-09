@@ -291,11 +291,12 @@ class General_model extends CI_Model
   public function cDetailStock($id)
   {
     $data['stockSymbol'] = $this->db->query('select * from stock where id = '.$id)->result();
-    $data['classifier'] = $this->getDataRow('classifier', 'id', $data['detail']->id_classifier);
     $data['detail'] = $this->getDataRow('stock', 'id', $id);
+    $data['classifier'] = $this->getDataRow('classifier', 'id', $data['detail']->id_classifier);
     $i = 0;foreach ($data['stockSymbol'] as $item) {$data['chart']['chartData'.$i] = $this->getStock($item->stock_code);$i++;}
+//    var_dump(prediction($data['detail']->stock_code, $data['classifier']->classifier_code));die;
     $this->getStockData($data['detail']->stock_code);
-    $this->updateData('stock','id', $id, 'prediction_1', prediction($data['detail']->stock_code, $data['classifier']->classifier_code));
+    $this->updateData('stock','stock_code', $data['detail']->stock_code, 'prediction_1', prediction($data['detail']->stock_code, $data['classifier']->classifier_code));
     $data['suscribeStatus'] = $this->getNumRow2('subscription', 'id_user', $this->session->userdata['id'], 'id_stock', $id);
     $data['classifier'] = $this->getDataRow('classifier', 'id', $data['detail']->id_classifier);
 

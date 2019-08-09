@@ -85,7 +85,7 @@ class Analist_model extends CI_Model
       $S1 = (2*$PP) - $high;
       $S2 = $PP - ($high - $low);
       $S3 = $low - (2*($high - $PP));
-      
+
       $dtest[$x] = ($high.','.$low.','.$close.','.$volume.','.$PP.','.$R1.','.$R2.','.$R3.','.$S1.','.$S2.','.$S3.','.$class[rand(0,2)]);
 
       $x++;
