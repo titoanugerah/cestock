@@ -56,7 +56,7 @@
               <p class="text-muted small mb-2">@<?php echo $item->username; ?></p>
               <br>
               <center>
-                <a href="<?php echo base_url('detailAccount/'.$item->id) ?>" class="btn btn-secondary btn-round">Detail Akun</a>
+                <a href="<?php echo base_url('detailAccount/'.$item->id) ?>" class="btn btn-secondary btn-round" hidden>Detail Akun</a>
               </center>
             </div>
           </div>
