@@ -13,7 +13,7 @@
   <div class="card">
     <div class="card-header">
       <center>
-        <h3 style="align:center">Highlight Saham</h3>
+        <h3 style="align:center">Keterangan</h3>
       </center>
     </div>
     <div class="card-body">

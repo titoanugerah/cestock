@@ -334,12 +334,19 @@ class General_model extends CI_Model
 
   public function invest($id)
   {
-//    var_dump($this->getStock($this->getDataRow('stock', 'id', $id)->stock_code)['row'][1][4]);die;
     $identity = $this->getDataRow2('subscription', 'id_user', $this->session->userdata['id'], 'id_stock', $id);
-//    var_dump($id);die;
-   $this->updateData('subscription', 'id', $identity->id, 'invest', $this->input->post('amount'));
-   $this->updateData('subscription', 'id', $identity->id, 'date_invest', date('Y-m-d H:i:s'));
-   $this->updateData('subscription', 'id', $identity->id, 'price', $this->getStock($this->getDataRow('stock', 'id', $id)->stock_code)['row'][1][4]);
+    $this->updateData('subscription', 'id', $identity->id, 'invest', $this->input->post('amount'));
+    $this->updateData('subscription', 'id', $identity->id, 'date_invest', date('Y-m-d H:i:s'));
+    $this->updateData('subscription', 'id', $identity->id, 'price', $this->getStock($this->getDataRow('stock', 'id', $id)->stock_code)['row'][1][4]);
+  }
+
+  public function cStockByCategory($id)
+  {
+    $data['stock'] = $this->getSomeData('stock', 'id_category', $id);
+    $data['category'] = $this->getDataRow('category', 'id', $id);
+    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+    $data['view_name'] = 'cStockByCategory';
+    return $data;
 
   }
 }

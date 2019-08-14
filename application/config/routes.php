@@ -11,7 +11,7 @@ $route['profile'] = 'general/profile';
 $route['detailAccount/(:any)'] = 'general/detailAccount/$1';
 $route['viewInvoice/(:any)'] = 'general/viewInvoice/$1';
 $route['detailStock/(:any)'] = 'general/detailStock/$1';
-
+$route['stockByCategory/(:any)'] = 'general/stockByCategory/$1';
 //ADMIN
 $route['webconf'] = 'admin/webconf';
 $route['category'] = 'admin/category';
