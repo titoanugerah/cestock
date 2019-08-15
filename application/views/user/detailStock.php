@@ -17,10 +17,6 @@
   </div>
 </div>
 
-<?php
-// var_dump($stock['row']);die;
- ?>
-
 <div class="page-inner mt--5">
   <div class="card">
     <div class="card-header">
@@ -36,7 +32,7 @@
         </div>
       </div>
       <div class="card-footer">
-        Sumber : Alphavantage.com
+        Sumber : Alphavantage.com (Update <?php echo $detail->date_prediction_1; ?>)
       </div>
     </div>
 
@@ -48,7 +44,7 @@
           Prediksi
         </div>
         <div class="card-body">
-          Berdasarkan prediksi oleh analist <?php echo $analist->fullname; ?> menggunakan klasifikasi/algoritma <?php echo $classifier->classifier; ?> untuk 1 jam kedepan disarankan untuk <?php echo $detail->prediction_1; ?>. <?php {echo 'Apabila anda menjual saham anda maka keuntungannya adalah Rp.'.$investValue;} ?>
+          Berdasarkan prediksi oleh analist <?php echo $analist->fullname; ?> menggunakan klasifikasi/algoritma <?php echo $classifier->classifier; ?> untuk 1 jam kedepan disarankan untuk <?php echo $detail->prediction_1; ?>. <?php {echo 'Apabila anda menjual saham anda maka keuntungannya adalah Rp.'.number_format($investValue,2,',','.');} ?>
         </div>
       </div>
       <div class="card">
@@ -99,7 +95,8 @@
           <div class="modal-body">
             <div class="form-group col-6 col-md-12">
               <label>Jumlah investasi (RP)</label>
-              <input type="text" class="form-control" placeholder="Masukan jumlah uang yang diinvestasikan" name="amount" required>
+              <input type="text" class="form-control" placeholder="Masukan jumlah uang yang diinvestasikan" name="amount" value="<?php echo $invest->invest; ?>" required>
+
             </div>
           </div>
         <div class="modal-footer">

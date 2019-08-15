@@ -302,13 +302,14 @@ class General_model extends CI_Model
 //    var_dump(prediction($data['detail']->stock_code, $data['classifier']->classifier_code));die;
     $this->getStockData($data['detail']->stock_code);
     $this->updateData('stock','stock_code', $data['detail']->stock_code, 'prediction_1', prediction($data['detail']->stock_code, $data['classifier']->classifier_code));
+    $this->updateData('stock', 'stock_code', $data['detail']->stock_code, 'date_prediction_1', date('Y-m-d H:i:s'));
     $data['suscribeStatus'] = $this->getNumRow2('subscription', 'id_user', $this->session->userdata['id'], 'id_stock', $id);
     $data['classifier'] = $this->getDataRow('classifier', 'id', $data['detail']->id_classifier);
     $data['analist'] = $this->getDataRow('account', 'id', $data['detail']->id_analist);
     $data['stock'] = $this->getStock($data['detail']->stock_code);
     $data['currentPrice'] = $data['stock']['row'][1][4];
-    $data['previousPrice'] = $this->getDataRow('subscription', 'id', $id)->price;
-    $data['investValue'] = (int)(($data['currentPrice'] - $data['previousPrice'])* $this->getDataRow('subscription', 'id', $id)->invest);
+    $data['invest'] = $this->getDataRow2('subscription', 'id_user',$this->session->userdata['id'], 'id_stock', $id );
+    $data['investValue'] = ($data['currentPrice'] - $data['invest']->price)*($data['invest']->invest/$data['invest']->price);
     $data['view_name'] = 'detailStock';
     $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
     return $data;
@@ -345,7 +346,7 @@ class General_model extends CI_Model
     $data['stock'] = $this->getSomeData('stock', 'id_category', $id);
     $data['category'] = $this->getDataRow('category', 'id', $id);
     $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
-    $data['view_name'] = 'cStockByCategory';
+    $data['view_name'] = 'StockByCategory';
     return $data;
 
   }
