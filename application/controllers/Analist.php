@@ -15,7 +15,9 @@ class Analist extends CI_Controller
 
   public function myStock()
   {
-    if ($this->input->post('createStock')) {$this->analist_model->createStock();}
+    $keyword = null;
+    if ($this->input->post('search')) { redirect(base_url('search/'.$this->input->post('keyword')));}
+    elseif ($this->input->post('createStock')) {$this->analist_model->createStock();}
     elseif ($this->input->post('updateStock')) {$this->analist_model->updateStock();}
     elseif ($this->input->post('updateModel')) {$this->analist_model->updateModel();}
     elseif ($this->input->post('deleteStock')) {$this->analist_model->deleteStock();}

@@ -12,7 +12,9 @@ class Admin extends CI_Controller
 
   public function webconf()
   {
-    if ($this->input->post('updateInfo')) {$this->admin_model->updateInfo();}
+    $keyword = null;
+    if ($this->input->post('search')) { redirect(base_url('search/'.$this->input->post('keyword')));}
+    else if ($this->input->post('updateInfo')) {$this->admin_model->updateInfo();}
     else if ($this->input->post('updateEmail')) {$this->admin_model->updateInfo();}
     else if ($this->input->post('uploadWeka')) {$this->admin_model->uploadWeka();}
     else if ($this->input->post('updatePaymentMethod')) {$this->admin_model->updatePaymentMethod();}
@@ -22,7 +24,9 @@ class Admin extends CI_Controller
 
   public function category()
   {
-    if ($this->input->post('createCategory')) {$this->admin_model->createCategory();}
+    $keyword = null;
+    if ($this->input->post('search')) { redirect(base_url('search/'.$this->input->post('keyword')));}
+    elseif ($this->input->post('createCategory')) {$this->admin_model->createCategory();}
     elseif ($this->input->post('deleteCategory')) {$this->admin_model->deleteCategory();}
     elseif ($this->input->post('updateCategory')) {$this->admin_model->updateCategory();}
     elseif ($this->input->post('recoverCategory')) {$this->admin_model->recoverCategory();}
@@ -48,7 +52,9 @@ class Admin extends CI_Controller
 
   public function pricing()
   {
-    if ($this->input->post('addPricing')) {$this->admin_model->addPricing();}
+    $keyword = null;
+    if ($this->input->post('search')) { redirect(base_url('search/'.$this->input->post('keyword')));}
+    elseif ($this->input->post('addPricing')) {$this->admin_model->addPricing();}
     elseif ($this->input->post('updatePricing')) {$this->admin_model->updatePricing();}
     elseif ($this->input->post('deletePricing')) {$this->admin_model->deletePricing();}
     elseif ($this->input->post('recoverPricing')) {$this->admin_model->recoverPricing();}
@@ -57,7 +63,9 @@ class Admin extends CI_Controller
 
   public function paymentList()
   {
-    if ($this->input->post('verify')) {$this->admin_model->verify();}
+    $keyword = null;
+    if ($this->input->post('search')) { redirect(base_url('search/'.$this->input->post('keyword')));}
+    elseif ($this->input->post('verify')) {$this->admin_model->verify();}
     elseif ($this->input->post('unverify')) {$this->admin_model->unverify();}
 
     $this->load->view('template',$this->admin_model->cPaymentList());
