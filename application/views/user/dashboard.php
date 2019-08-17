@@ -19,7 +19,9 @@
     <div class="card-body">
       <div class="row">
         <?php $i=0; foreach ($stockSymbol as $item1): ?>
+          <a href="<?php echo base_url('detailStock/'.$item1->id); ?>">
           <div id="container<?php echo $i;?>" style="width:250px; height:200px;"></div>
+        </a>
           <?php $i++; endforeach; ?>
         </div>
       </div>

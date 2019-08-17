@@ -18,6 +18,9 @@
       <a class="nav-link" data-toggle="tab" href="#tab2">Email</a>
       <a class="nav-link" data-toggle="tab" href="#tab3">Machine Learning</a>
       <a class="nav-link" data-toggle="tab" href="#tab4">Pembayaran</a>
+      <!--Update on deploy plan : sept -->
+      <a class="nav-link" data-toggle="tab" href="#tab5" hidden>Tampilan</a>
+
     </div>
   </div>
 </div>
