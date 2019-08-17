@@ -158,6 +158,7 @@ class General_model extends CI_Model
   {
     $url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=".$stock."&interval=5min&apikey=QT2PLXB57HD123EU&datatype=csv";
     $data['csv'] = explode("\n",file_get_contents($url));
+    $data['count'] = 0;
     for ($i=0; $i < (count($data['csv'])-1); $i++) {
       if($i==0){
         continue;
@@ -347,6 +348,21 @@ class General_model extends CI_Model
     $data['category'] = $this->getDataRow('category', 'id', $id);
     $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
     $data['view_name'] = 'StockByCategory';
+    return $data;
+  }
+
+  public function cSearch($keyword)
+  {
+    if ($this->getNumRow('stock', 'stock_code', $keyword)) {
+      redirect(base_url('detailStock/'.$this->getDataRow('stock', 'stock_code', $keyword)->id));
+    } elseif ($this->getStock($keyword)['count']>0) {
+      $data['statusStock'] = 1;
+      $data['stock'] = $this->getStock($keyword);
+    } else {
+      $data['statusStock'] = 0;
+    }
+    $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
+    $data['view_name'] = 'search';
     return $data;
 
   }

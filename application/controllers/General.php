@@ -29,6 +29,8 @@ class General extends CI_Controller
 
   public function dashboard()
   {
+    $keyword = null;
+    if ($this->input->post('search')) { redirect(base_url('search/'.$this->input->post('keyword')));}
     $this->load->view('template', $this->general_model->cDashboard());
   }
 
@@ -66,17 +68,26 @@ class General extends CI_Controller
 
   public function detailStock($id)
   {
-     if ($this->input->post('suscribe')) {$this->general_model->suscribe($id);}
-     elseif ($this->input->post('unsuscribe')) {$this->general_model->unsuscribe($id);}
-     elseif ($this->input->post('invest')) {$this->general_model->invest($id);}
+    $keyword = null;
+    if ($this->input->post('search')) { redirect(base_url('search/'.$this->input->post('keyword')));}
+    elseif ($this->input->post('suscribe')) {$this->general_model->suscribe($id);}
+    elseif ($this->input->post('unsuscribe')) {$this->general_model->unsuscribe($id);}
+    elseif ($this->input->post('invest')) {$this->general_model->invest($id);}
     $this->load->view('template', $this->general_model->cDetailStock($id));
   }
 
   public function stockByCategory($id)
   {
+    $keyword = null;
+    if ($this->input->post('search')) { redirect(base_url('search/'.$this->input->post('keyword')));}
     $this->load->view('template', $this->general_model->cStockByCategory($id));
+  }
+
+  public function search($keyword)
+  {
+    $this->load->view('template', $this->general_model->cSearch($keyword));
   }
 }
 
 
- ?>
+?>
