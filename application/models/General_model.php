@@ -355,12 +355,16 @@ class General_model extends CI_Model
   {
     if ($this->getNumRow('stock', 'stock_code', $keyword)) {
       redirect(base_url('detailStock/'.$this->getDataRow('stock', 'stock_code', $keyword)->id));
-    } elseif ($this->getStock($keyword)['count']>0) {
+    } elseif ($this->getStock($keyword)['count']>1) {
       $data['statusStock'] = 1;
-      $data['stock'] = $this->getStock($keyword);
+      $data['chart']['chartData0'] = $this->getStock($keyword);
+      // var_dump($this->getStock($keyword));die;
     } else {
       $data['statusStock'] = 0;
     }
+    $this->session->set_flashdata('keyword', $keyword);
+    $data['category'] = $this->db->query('select * from category where category LIKE "%'.$keyword.'%"')->result();
+    $data['account'] = $this->db->query('select * from account where username LIKE "%'.$keyword.'%" or fullname LIKE "%'.$keyword.'%" or email LIKE "%'.$keyword.'%"')->result();
     $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
     $data['view_name'] = 'search';
     return $data;

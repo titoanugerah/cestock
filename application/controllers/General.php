@@ -48,14 +48,18 @@ class General extends CI_Controller
 
   public function profile()
   {
-    if($this->input->post('updateAccount')){$this->session->set_userdata($this->general_model->updateAccount());}
+    $keyword = null;
+    if ($this->input->post('search')) { redirect(base_url('search/'.$this->input->post('keyword')));}
+    elseif($this->input->post('updateAccount')){$this->session->set_userdata($this->general_model->updateAccount());}
     elseif($this->input->post('uploadDP')){$this->session->set_userdata($this->general_model->uploadDP());}
     $this->load->view('template', $this->general_model->cProfile());
   }
 
   public function detailAccount($id)
   {
-    if($this->input->post('deleteStock')){$this->admin_model->deleteStock();}
+    $keyword = null;
+    if ($this->input->post('search')) { redirect(base_url('search/'.$this->input->post('keyword')));}
+    elseif($this->input->post('deleteStock')){$this->admin_model->deleteStock();}
     elseif($this->input->post('deleteAccount')){$this->admin_model->deleteAccount();}
     elseif($this->input->post('recoverAccount')){$this->admin_model->recoverAccount();}
     $this->load->view('template', $this->general_model->cDetailAccount($id));
@@ -85,6 +89,7 @@ class General extends CI_Controller
 
   public function search($keyword)
   {
+    if ($this->input->post('search')) { redirect(base_url('search/'.$this->input->post('keyword')));}
     $this->load->view('template', $this->general_model->cSearch($keyword));
   }
 }
