@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="card-footer">
-        Sumber : Alphavantage.com
+        Sumber : Alphavantage.com (Update <?php echo $detail->date_prediction_1; ?>)
       </div>
     </div>
 
