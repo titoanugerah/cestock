@@ -20,9 +20,9 @@
       <div class="row">
         <?php $i=0; foreach ($stockSymbol as $item1): ?>
           <a href="<?php echo base_url('detailStock/'.$item1->id); ?>">
-          <div id="container<?php echo $i;?>" style="width:250px; height:200px;"></div>
-        </a>
-        <?php $i++; endforeach; ?>
+            <div id="container<?php echo $i;?>" style="width:250px; height:200px;"></div>
+          </a>
+          <?php $i++; endforeach; ?>
         </div>
       </div>
       <div class="card-footer">
@@ -31,11 +31,15 @@
     </div>
   </div>
   <div class="page-inner mt--5">
-
     <div class="card">
-      <div class="card-body">
 
-        <div class="embed-responsive embed-responsive-16by9" style="height:730px;" ><iframe class="embed-responsive-item" width ="930" height=730 src="https://databoks.katadata.co.id/datapublishembed/109156/tren-pergerakan-indeks-harga-saham-bursa-jakarta"></iframe></div>
+      <div class="card-body">
+        <div class="row">
+          <div id="container" style="width:100%; height:400px;"></div>
+        </div>
+      </div>
+      <div class="card-footer">
+        Sumber : Alphavantage.com (Update <?php echo date('d-M-Y H:i:s'); ?>)
       </div>
     </div>
   </div>
@@ -115,3 +119,11 @@
             });
           </script>
           <?php $i++; endforeach; ?>
+
+          <script type="text/javascript">
+          Highcharts.chart('container', {
+            title: {text: 'Indeks Harga Saham Gabungan (IHSG)'},
+            xAxis: {categories: [<?php foreach ($chart['ihsg']['row'] as $item) {echo "'".date('Y-m-d H:i:s', strtotime($item[0]))."',"; } ?>]},
+            series: [{data: [<?php foreach ($chart['ihsg']['row'] as $item) {echo ($item[1]).","; } ?>],name: 'Open'}, {data: [<?php foreach ($chart['ihsg']['row'] as $item) {echo ($item[4]).","; } ?>],name: 'Close'}]
+          });
+          </script>

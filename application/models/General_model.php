@@ -241,6 +241,8 @@ class General_model extends CI_Model
     $data['stockCount'] = $this->db->get('stock')->num_rows();
     $data['stockSymbol'] = $this->db->query('select * from stock order by rand() asc limit 0,'.$data['stockCount'])->result();
     $i = 0;foreach ($data['stockSymbol'] as $item) {$data['chart']['chartData'.$i] = $this->getStock($item->stock_code);$i++;}
+    $data['chart']['ihsg'] = $this->getStock('idx');
+
     $data['category'] = $this->getAllData('category');
     $data['webconf'] = $this->getDataRow('webconf', 'id', 1);
     $data['view_name'] = 'dashboard';
