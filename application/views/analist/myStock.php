@@ -192,7 +192,7 @@
                         <label>Algoritma Klasifikasi</label> &nbsp;&nbsp;&nbsp;&nbsp;
                         <select class="select2basic form-control" name="id_classifier" style="width:270px">
                           <?php foreach ($classifier as $items): ?>
-                            <option value="<?php echo $items->id ?>" <?php if($item->id_classifier = $items->id){echo 'selected';} ?>><?php echo $items->classifier; ?></option>
+                            <option value="<?php echo $items->id ?>" <?php if($item->id_classifier == $items->id){echo 'selected';} ?>><?php echo $items->classifier; ?></option>
                           <?php endforeach; ?>
                         </select>
                       </div>
